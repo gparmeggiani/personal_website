@@ -122,7 +122,7 @@
             }
 
             .section {
-                font-size: 1.5em;
+                font-size: 1.4em;
                 margin: 30px auto;
                 padding: 0 30px;
                 text-align: justify;
@@ -165,6 +165,7 @@
             footer {
                 height: 100%;
                 color: white;
+                text-shadow: 0 1px 0 black;
             }
 
             footer h1 {
@@ -173,7 +174,6 @@
                 background: transparent;
                 text-align: center;
                 font-size: 3em;
-                font-weight: 100;
             }
             footer .col {
                 text-align: center;
@@ -260,15 +260,24 @@
             </div>
         </header>
         <div class="section white with-columns" id="bio">
-            My name is <b>Giacomo</b> and <b>I was born with the passion of technology</b> and electronics: my mom used to make me homemade easter eggs filled with electrical wires, sockets and switches,
-            while it was with my dad (who, btw, never had the passion for technology or electronics) that I started to solder my first circuits <b>at the age of ten</b>. Not to mention the fact that I tended to tear apart any electronic device to discover what there was inside. Those were my toys!<br>
+            My name is <b>Giacomo</b> and <b>I was born with the passion for technology</b> and electronics: my mom used to make me homemade easter eggs filled with
+            electrical wires, plugs and switches.
+            My dad (who, btw, never had the passion for technology or electronics) also supported me and bought me my first soldering iron so
+            that I could start soldering my first circuits, roughly at the age of ten.
+            Also, when I was a kid, I tended to tear apart any electronic device because I really wanted to discover what there was inside. Those were my toys!<br>
 
-            I was born and raised in Italy in a small town called Manzano (Udine).
-            I really love to design and build electrical circuits and develop all sorts of software. This <b>passion</b> led me to enroll at <b>Polytechnic University of Milan</b>,
-            where I first got my B.Sc. and then the M.Sc. in <b>Electronics Engineering</b>.<br>
+            I grew up in Italy in a small town called Manzano (Udine) where I spent my free time designing and building electrical circuits and developing all sorts of software.
+            This <b>passion</b> led me to enroll at <b>Polytechnic University of Milan</b>, where I first got my B.Sc. and then the M.Sc. in <b>Electronics Engineering</b>.<br>
 
-            I'm also extremely passionate about creating things that people can use and seeing the impact that have on their lives. This unleashed my <b>entrepreneurial spirit</b>, which brought me to <a href="http://summer.stanford.edu/" target="_blank">Stanford</a> for the summer 2014.
-            There I studied Technology Entrepreneurship as part of an intensive studies program focused on <b>International Management</b>. During that summer, <a href="https://www.bespecular.com" target="_blank">BeSpecular</a> was born, which is an app to help <b>blind</b> people live a more independent life.
+            I'm also extremely passionate about creating things that people can use and seeing the impact that have on their lives.
+            This brought me to <a href="http://summer.stanford.edu/" target="_blank">Stanford</a> for the summer 2014.
+            There I studied <b>Technology Entrepreneurship</b> as part of an intensive studies program focused on <b>International Management</b>.
+            During that summer, <a href="https://www.bespecular.com" target="_blank">BeSpecular</a> was born, which is an app to help <b>blind</b> people live a
+            more independent life.<br>
+
+            After having launched the app, i joined the team of <a href="http://www.azcom.it" target="_blank">Azcom</a> as a <b>LTE PHY DSP Engineer</b>.
+            There I'm now also collaborating in the H2020 5G-PPP Project named <a href="http://5g-coral.eu/" target="_blank">5G-CORAL</a> by designing and
+            developing the <b>connected cars</b> testbed which aims at demonstrating how the <b>Edge and Fog Computing</b> can help improve the <b>road safety</b>.
         </div>
 
 
@@ -314,7 +323,7 @@
             </div>
         </div>
         <div class="section white">
-            <div class="pic-credit">Picture: Jim Williams's schematic sketch for a barometric circuit, 1992. Picture taken at the Computer History Museum in 2012</div>
+            <div class="pic-credit">Picture: Jim Williams's schematic sketch for a barometric circuit, 1992. I took this Picture at the Computer History Museum in 2012</div>
             <h2>Projects</h2>
             <p>
                 <!-- A little intro here. Explain why I decided to build some devices. No labs at our university -->
@@ -610,9 +619,12 @@
                 <div class="cd-timeline-block">
                     <div class="cd-timeline-img"></div>
                     <div class="cd-timeline-content">
-                        <h2>DSP Software Engineer (LTE)</h2>
+                        <h2>DSP Software Engineer</h2>
                         <p>
-                            In January 2017 I started working as a DSP Software Engineer (LTE) at <a href="http://www.azcom.it" target="_blank">Azcom</a>.
+                            In January 2017 I started working as a DSP Software Engineer at <a href="http://www.azcom.it" target="_blank">Azcom</a>.<br>
+                            - NB-IoT PHY DSP development<br>
+                            - LTE PRACH Format 2 (MATLAB + DSP)<br>
+                            - 5G-CORAL Connected Cars testbed<br>
                         </p>
                         <span class="cd-date">2016</span>
                     </div>
@@ -635,7 +647,7 @@
                         <h2>Started BeSpecular</h2>
                         <p>
                             During a class at Stanford, my team and I created BeSpecular.<br>
-                            Then, Stephanie Cowper and I carried on the project. I took care of the technology (entire development of the server side code, iOS and Android app)
+                            Then, <a href="https://twitter.com/stephcowper_sa" target="_blank">Stephanie Cowper</a> and I carried on the project. I took care of the technology (entire development of the server side code, iOS and Android app)
                         </p>
                         <span class="cd-date">2014</span>
                     </div>
