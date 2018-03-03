@@ -1,0 +1,25 @@
+/*General definitions*/
+* {
+    margin:0;
+    padding:0;
+    border:0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+a:hover {
+    text-decoration: none;
+    color: #f95252;
+}
+
+footer {
+    background-color: rgba(0,0,0, 0.6);
+    height: 100px;
+    width: 100%;
+}
