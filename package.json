@@ -1,0 +1,37 @@
+{
+    "title": "Personal Website",
+    "name": "parme-personal-website",
+    "version": "2.0.0",
+    "description": "Giacomo Parmeggiani's personal website",
+    "author": "Giacomo Parmeggiani <giacomo.parmeggiani@gmail.com> (http://www.giacomoparmeggiani.com)",
+    "keywords": [],
+    "homepage": "http://www.giacomoparmeggiani.com",
+    "license": "UNLICENSED",
+    "scripts": {
+        "gulp": "gulp",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "ssh://giacomo@milano-parme.ddns.net/volume2/Git/personal_website"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "5.6.3",
+        "bootstrap": "4.2.1",
+        "jquery": "3.3.1",
+        "jquery.easing": "^1.4.1",
+        "magnific-popup": "^1.1.0"
+    },
+    "devDependencies": {
+        "browser-sync": "2.26.3",
+        "gulp": "4.0.0",
+        "gulp-autoprefixer": "6.0.0",
+        "gulp-clean-css": "4.0.0",
+        "gulp-filter": "5.1.0",
+        "gulp-header": "2.0.7",
+        "gulp-plumber": "^1.2.1",
+        "gulp-rename": "1.4.0",
+        "gulp-sass": "4.0.2",
+        "gulp-uglify": "3.0.1"
+    }
+}
