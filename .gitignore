@@ -1,4 +1,3 @@
 .*
 !.gitignore
 !.wakatime-project
-*.log

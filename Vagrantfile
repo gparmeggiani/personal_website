@@ -3,14 +3,21 @@
 
 Vagrant.configure(2) do |config|
 
-  config.vm.box = "ubuntu/xenial32"
+  config.vm.box = "alpine/alpine64"
 
-  # Forward ports
-  config.vm.network "forwarded_port", guest: 80, host: 8082
+  config.vm.network "forwarded_port", guest: 80, host: 8082, host_ip: "127.0.0.1"
 
-  # Share the www folder
-  config.vm.synced_folder "./www", "/var/www/html"
+  config.vm.synced_folder "www", "/usr/share/nginx/html"
 
-  # Run provisioning script
-  config.vm.provision "shell", path: "./vagrant_provision.sh"
+  config.vm.provision "shell", inline: <<-SHELL
+    apk update
+    apk add nginx
+
+    sed -i "s/sendfile.*/sendfile off;/g" /etc/nginx/nginx.conf
+
+    cp /vagrant/nginx.conf /etc/nginx/conf.d/default.conf
+
+    rc-service nginx restart
+    rc-update add nginx default
+  SHELL
 end
