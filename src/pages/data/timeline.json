@@ -1,0 +1,44 @@
+[
+    {
+        "inverted": true,
+        "year": "2019 - today",
+        "title": "DSP Software Engineer",
+        "descr": "In January 2017 I started working as a DSP Software Engineer at Azcom.<br>NB-IoT PHY DSP development<br>LTE PRACH Format 2 (MATLAB + DSP)<br><a href=\"http://5g-coral.eu\">5G-CORAL<a> Connected Cars testbed in partnership with <a href=\"http://www.tim.it\">TIM</a>",
+        "img": null
+    },
+    {
+        "inverted": false,
+        "year": "2014-2016",
+        "title": "M.Sc. at Politecnico di Milano",
+        "descr": "in 2016 I graduated (110/110) in Electronics Engineering at <a href=\"https://www.polimi.it\">Politecnico di Milano</a>",
+        "img": null
+    },
+    {
+        "inverted": true,
+        "year": "2014",
+        "title": "Founded BeSpecular",
+        "descr": "During a class at Stanford, my team and I created BeSpecular as a class project.<br>Then, <a href=\"https://twitter.com/stephcowper_sa\">Stephanie</a> and I carried on the project. I took care of all the technology (entire development of the server side code, iOS and Android app)",
+        "img": null
+    },
+    {
+        "inverted": false,
+        "year": "2014",
+        "title": "Stanford Summer School",
+        "descr": "I went to Stanford for a Summer School on Technology Entrepreneurship.<br>What I liked the most? The AMAZING people from all over the World that I met there",
+        "img": null
+    },
+    {
+        "inverted": true,
+        "year": "2010-2013",
+        "title": "B.Sc. at Politecnico di Milano",
+        "descr": "I started the Bachelor of Science in Electronics Engineering at <a href=\"https://www.polimi.it\">Politecnico di Milano</a>",
+        "img": null
+    },
+    {
+        "inverted": false,
+        "year": "2005-2010",
+        "title": "High school",
+        "descr": "Istituto Bertoni (Udine)",
+        "img": null
+    }
+]

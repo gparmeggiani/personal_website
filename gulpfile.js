@@ -127,6 +127,7 @@ function js(done) {
 function pages(done){
 
     projects = JSON.parse(fs.readFileSync('./src/pages/data/projects.json', 'utf8'));
+    timeline = JSON.parse(fs.readFileSync('./src/pages/data/timeline.json', 'utf8'));
 
     //Cleanup
     del([
@@ -136,7 +137,8 @@ function pages(done){
     //Homepage
     gulp.src("./src/pages/home.mustache")
     .pipe(mustache({
-        projects: projects
+        projects: projects,
+        timeline: timeline
     },{},{}))
     .pipe(rename("index.html"))
     .pipe(gulp.dest("./www"))
