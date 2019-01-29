@@ -1,0 +1,12 @@
+[
+    {
+        "id": "esempio-di-progetto",
+        "title": "Qui il titolo",
+        "descr": "Qui la descrizione"
+    },
+    {
+        "id": "un-altro-progetto",
+        "title": "Altro Progetto",
+        "descr": "Descrizione va qui"
+    }
+]
