@@ -145,10 +145,22 @@ function pages(done){
     .pipe(browsersync.stream());
 
     //Projects pages
-    projects.forEach(function(p){
+    projects.forEach(function(project){
+
+        var extra_partial = "n/a"; //Stupid behavior
+        if(project.extra) {
+            extra_partial = fs.readFileSync('./src/pages/'+project.extra, 'utf8')
+        }
+
         gulp.src("./src/pages/project.mustache")
-        .pipe(mustache(p))
-        .pipe(rename(p.id+".html"))
+        .pipe(mustache(
+            project,
+            {},
+            {
+                "extra_partial": extra_partial
+            }
+        ))
+        .pipe(rename(project.id+".html"))
         .pipe(gulp.dest("./www/projects"))
         .pipe(browsersync.stream());
     });

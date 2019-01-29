@@ -14,13 +14,13 @@
         {{> partials/navigation }}
 
         <!-- Header section -->
-        <header class="masthead bg-primary text-white text-center">
+        <header class="masthead text-center">
             <div class="container">
                 <img class="img-fluid mb-5 d-block mx-auto" src="static/img/profile.png" alt="">
-                <h1 class="text-uppercase mb-0">Start Bootstrap!!</h1>
+                <h1 class="text-uppercase mb-0">Giacomo Parmeggiani</h1>
                 <!--<hr class="star-light">-->
                 <hr>
-                <h2 class="font-weight-light mb-0">Web Developer - Graphic Artist - User Experience Designer</h2>
+                <h2 class="font-weight-light mb-0">Hardware and software engineer</h2>
             </div>
         </header>
 
@@ -28,21 +28,35 @@
         <section class="bg-primary text-white mb-0" id="about">
             <div class="container">
                 <h2 class="text-center text-uppercase text-white">About</h2>
-                <div class="row">
-                    <div class="col-lg-4 ml-auto">
-                        <p class="lead">Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional LESS stylesheets for easy customization.</p>
-                    </div>
-                    <div class="col-lg-4 mr-auto">
-                        <p class="lead">Whether you're a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this template is the perfect starting point!</p>
-                    </div>
-                    <div class="col-lg-4 mr-auto">
-                        <p class="lead">Whether you're a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this template is the perfect starting point!</p>
+                <div class="row mt-5">
+                    <div class="col-lg-12 ml-auto">
+                        My name is <b>Giacomo</b> and <b>I was born with the passion for technology</b> and electronics:
+                        my mom used to make me homemade easter eggs filled with electrical wires, plugs and switches.
+                        My dad (who, btw, never had the passion for technology or electronics) also supported me and bought me my first
+                        soldering iron so that I could start soldering my first circuits, roughly at the age of ten.
+                        Also, when I was a kid, I tended to tear apart any electronic device because I really wanted to discover
+                        what there was inside. Those were my toys!<br>
+                        I grew up in Italy in a small town called Manzano (Udine) where I spent my free time designing and building
+                        electrical circuits and developing all sorts of software.
+                        This <b>passion</b> led me to enroll at <b>Polytechnic University of Milan</b>, where I first got my B.Sc. and
+                        then the M.Sc. in <b>Electronics Engineering</b>.<br>
+                        I'm also extremely passionate about creating things that people can use and seeing the impact that have on their lives.
+                        This brought me to <a href="http://summer.stanford.edu/" target="_blank">Stanford</a> for the summer 2014.
+                        There I studied <b>Technology Entrepreneurship</b> as part of an intensive studies program focused on <b>International Management</b>.
+                        During that summer, <a href="https://www.bespecular.com" target="_blank">BeSpecular</a> was born, which is an app to help <b>blind</b> people live a
+                        more independent life.<br>
+
+                        After having launched the app, i joined the team of <a href="http://www.azcom.it" target="_blank">Azcom</a> as a
+                        <b>LTE PHY DSP Engineer</b>.
+                        There I'm now also collaborating in the H2020 5G-PPP Project named <a href="http://5g-coral.eu/" target="_blank">5G-CORAL</a>
+                        by designing and developing the <b>connected cars</b> testbed which aims at demonstrating how the <b>Edge and Fog Computing</b>
+                        can help improve the <b>road safety</b>.
                     </div>
                 </div>
                 <div class="text-center mt-4">
                     <a class="btn btn-xl btn-outline-light" href="#">
                         <i class="fas fa-download mr-2"></i>
-                        Curriculum Vitae
+                        Request my CV
                     </a>
                 </div>
             </div>
@@ -54,24 +68,26 @@
                 <div class="row mb-4">
                     <div class="col-lg-12 text-center">
                         <h2 class="section-heading text-uppercase">Portfolio</h2>
-                        <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                        <h3 class="section-subheading text-muted">Here's a list of some of the projects I've been working on</h3>
                     </div>
                 </div>
 
                 <div class="row">
                     {{#projects}}
                     <div class="col-md-4 col-sm-6 portfolio-item">
-                        <a class="portfolio-link" href="#">
+                        <a class="portfolio-link" href="/projects/{{id}}.html">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content">
                                     <i class="fas fa-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img class="img-fluid" src="static/img/portfolio/01-thumbnail.jpg" alt="">
+                            {{#image}}
+                            <img class="img-fluid" src="/static/img/portfolio/{{image}}" alt="">
+                            {{/image}}
                         </a>
                         <div class="portfolio-caption">
                             <h4>{{title}}</h4>
-                            <p class="text-muted">{{descr}}</p>
+                            <p class="text-muted">{{{subtitle}}}</p>
                         </div>
                     </div>
                     {{/projects}}
@@ -85,7 +101,6 @@
                 <div class="row mb-5">
                     <div class="col-lg-12 text-center">
                         <h2 class="section-heading text-uppercase">Timeline</h2>
-                        <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                     </div>
                 </div>
                 <div class="row">
@@ -108,11 +123,13 @@
                             <li>
                             {{/inverted}}
                                 <div class="timeline-image">
-                                    <img class="rounded-circle img-fluid" src="static/img/about/1.jpg" alt="">
+                                    {{#image}}
+                                    <img class="rounded-circle img-fluid" src="static/img/timeline/{{image}}" alt="">
+                                    {{/image}}
                                 </div>
                                 <div class="timeline-panel">
                                     <div class="timeline-heading">
-                                        <h4>{{@index}} {{year}}</h4>
+                                        <h4>{{year}}</h4>
                                         <h4 class="subheading">{{title}}</h4>
                                     </div>
                                     <div class="timeline-body">
@@ -127,7 +144,7 @@
             </div>
         </section>
 
-
+        <hr>
         <!-- Contact Section -->
         <section id="contact">
             <div class="container">

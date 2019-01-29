@@ -14,9 +14,36 @@
 
         {{> partials/navigation }}
 
-        Content here
+        <section class="bg-primary text-white mt-5">
+            <div class="container">
+                <h2 class="text-center text-uppercase text-white">{{title}}</h2>
+                {{#subtitle}}
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        {{{subtitle}}}
+                    </div>
+                </div>
+                {{/subtitle}}
+            </div>
+        </section>
+        {{#body}}
+        <section>
+            <div class="container">
+                <div class="row">
+                    {{{body}}}
+                </div>
+            </div>
+        </section>
+        {{/body}}
+        {{#extra}}
+        <section>
+            <div class="container">
+                {{> extra_partial }}
+            </div>
+        </section>
+        {{/extra}}
 
+        {{> partials/footer }}
         {{> partials/common_js }}
-
     </body>
-</html>
+    </html>

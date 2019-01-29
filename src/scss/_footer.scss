@@ -1,10 +1,12 @@
 .footer {
   padding-top: 5rem;
-  padding-bottom: 5rem;
-  background-color: $secondary;
+  padding-bottom: 2rem;
+  background-image: url("/static/img/rock.jpg");
+  background-size: cover;
+  background-position: center;
   color: $white;
 }
 
 .copyright {
-  background-color: darken($secondary, 10%);
+    margin-top: 3rem;
 }
