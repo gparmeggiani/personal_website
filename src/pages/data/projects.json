@@ -1,5 +1,45 @@
 [
     {
+        "id": "patching-a-win32-binary-application",
+        "title": "Patching a win32 binary application",
+        "subtitle": "TODO",
+        "body": null,
+        "extra": null,
+        "image": null
+    },
+    {
+        "id": "kalman-filter-for-gps-and-obdii-data-fusion",
+        "title": "Kalman filter for GPS and OBD-II data fusion",
+        "subtitle": "TODO",
+        "body": null,
+        "extra": null,
+        "image": "kalman-car-simulator.png"
+    },
+    {
+        "id": "iot-environmental-sensor",
+        "title": "IoT environmental sensor",
+        "subtitle": "Based on the ESP8266",
+        "body": null,
+        "extra": null,
+        "image": null
+    },
+    {
+        "id": "elimina-code-integrato-in-wingesfar",
+        "title": "Queue management system",
+        "subtitle": "Works with Wingesfar and it is build using microservices architecture: Docker containers and native applications. Communication is based on MQTT",
+        "body": null,
+        "extra": null,
+        "image": null
+    },
+    {
+        "id": "5g-coral",
+        "title": "5G-CORAL",
+        "subtitle": "TODO",
+        "body": null,
+        "extra": null,
+        "image": "5g-coral.jpg"
+    },
+    {
         "id": "bespecular",
         "title": "BeSpecular",
         "subtitle": "BeSpecular is an app that lets you help blind & deafblind people identify objects or situations.<br>More info at <a href=\"https://www.bespecular.com\">www.bespecular.com</a>",
@@ -22,6 +62,14 @@
         "body": "This circuit is an oscillator and it generates a sinusoidal waveform. Oscillators are circuits that always fascinated me: they can generate a signal on their own, starting from a DC power supply. This particular circuit is based on the classic LC resonant tank. The LC circuit will naturally oscillate at its resonant frequency, but the oscillations will be dumped primarily because of the parasitic resistance of the coil. The idea behind this circuit is to place in parallel with the LC circuit a negative resistance that, in parallel with the parasitic one, will cancel the latter one out, resulting in an equivalent \"infinite\" impedance. Of course, things are much more complicated. I conducted a deep study on this circuit, in particular I used the shooting method (implemented by myself in MATLAB) to accurately compute the oscillation period. The study can be found here (Italian).",
         "extra": null,
         "image": "cross_coupled.jpg"
+    },
+    {
+        "id": "expomash-expo-milano-2015",
+        "title": "Expomash for EXPO Milano 2015",
+        "subtitle": "A website that uses the Elo's Algorithm to rank the pavillions at EXPO Milano 2015",
+        "body": null,
+        "extra": null,
+        "image": "expomash.png"
     },
     {
         "id": "msc-thesis",
@@ -53,6 +101,6 @@
         "subtitle": "This is one of my favorite pictures of when I was a kid. Here I'm demonstrating series vs parallel connections.",
         "body": "This is one of my favorite pictures of when I was a kid. That is me showing my mother a simple circuit I built. I guess that was to show the difference between two lamps connected in series or parallel. In fact, the two at the back of the picture are connected in series and are less bright than the closest one, which is connected in parallel to the other two.",
         "extra": null,
-        "image": "me-4-years-old.jpg"
+        "image": "me-4-years-old-thumb.jpg"
     }
 ]

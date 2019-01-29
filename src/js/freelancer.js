@@ -1,6 +1,20 @@
 (function($) {
   "use strict"; // Start of use strict
 
+  //Typed in the header
+  new Typed('.typed', {
+    strings: ["I'm Giacomo", "I'm a software developer", "I'm a Hardware designer", "I'm in love with technology", "I'm passionate about what I do", "I'm a maker"],
+    typeSpeed: 80,
+    startDelay: 1200,
+		backSpeed: 50,
+		// time before backspacing
+    backDelay: 2000,
+    loop:true,
+    showCursor: true,
+    cursorChar: "|",
+    smartBackspace: false
+  });
+
   // Smooth scrolling using jQuery easing
   $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
@@ -25,11 +39,6 @@
     }
   });
 
-  // Closes responsive menu when a scroll trigger link is clicked
-  $('.js-scroll-trigger').click(function() {
-    $('.navbar-collapse').collapse('hide');
-  });
-
   // Activate scrollspy to add active class to navbar items on scroll
   $('body').scrollspy({
     target: '#mainNav',
@@ -46,18 +55,9 @@
   };
   // Collapse now if page is not at top
   navbarCollapse();
+
   // Collapse the navbar when page is scrolled
   $(window).scroll(navbarCollapse);
 
-  // Floating label headings for the contact form
-  $(function() {
-    $("body").on("input propertychange", ".floating-label-form-group", function(e) {
-      $(this).toggleClass("floating-label-form-group-with-value", !!$(e.target).val());
-    }).on("focus", ".floating-label-form-group", function() {
-      $(this).addClass("floating-label-form-group-with-focus");
-    }).on("blur", ".floating-label-form-group", function() {
-      $(this).removeClass("floating-label-form-group-with-focus");
-    });
-  });
 
 })(jQuery); // End of use strict

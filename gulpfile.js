@@ -61,11 +61,11 @@ function vendor(done) {
     ])
     .pipe(gulp.dest('www/vendor/jquery-easing'))
 
-    // Magnific Popup
+    // Typed.js
     gulp.src([
-        'node_modules/magnific-popup/dist/*'
+        'node_modules/typed.js/lib/typed.min.js'
     ])
-    .pipe(gulp.dest('www/vendor/magnific-popup'))
+    .pipe(gulp.dest('www/vendor/typed.js'))
 
     done();
 }

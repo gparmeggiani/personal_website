@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Software and Hardware engineer. Milano & Udine. M.Sc at Polimi, Summer school at Stanford, B.Sc at Polimi"/>
+        <meta name="description" content="Software and Hardware engineer. M.Sc at Polimi, Summer school at Stanford, B.Sc at Polimi"/>
         <meta name="author" content="Giacomo Parmeggiani">
 
-        <title>Giacomo Parmeggiani</title>
+        <title>GIACOMO PARMEGGIANI</title>
 
         {{> partials/common_css }}
     </head>
@@ -16,11 +16,13 @@
         <!-- Header section -->
         <header class="masthead text-center">
             <div class="container">
-                <img class="img-fluid mb-5 d-block mx-auto" src="static/img/profile.png" alt="">
-                <h1 class="text-uppercase mb-0">Giacomo Parmeggiani</h1>
-                <!--<hr class="star-light">-->
+                <img class="myself img-fluid mb-5 d-block mx-auto" src="static/img/giacomo.jpg" alt="">
+                <h1 class="text-uppercase mb-0">
+                    Hello!<br>
+                    <span class="typed"></span>
+                </h1>
                 <hr>
-                <h2 class="font-weight-light mb-0">Hardware and software engineer</h2>
+                <h2 class="font-weight-light mb-0">Software and Hardware engineer</h2>
             </div>
         </header>
 
@@ -30,7 +32,7 @@
                 <h2 class="text-center text-uppercase text-white">About</h2>
                 <div class="row mt-5">
                     <div class="col-lg-12 ml-auto">
-                        My name is <b>Giacomo</b> and <b>I was born with the passion for technology</b> and electronics:
+                        My name is <b>Giacomo Parmeggiani</b> and <b>I was born with the passion for technology</b> and electronics:
                         my mom used to make me homemade easter eggs filled with electrical wires, plugs and switches.
                         My dad (who, btw, never had the passion for technology or electronics) also supported me and bought me my first
                         soldering iron so that I could start soldering my first circuits, roughly at the age of ten.
@@ -53,16 +55,10 @@
                         can help improve the <b>road safety</b>.
                     </div>
                 </div>
-                <div class="text-center mt-4">
-                    <a class="btn btn-xl btn-outline-light" href="#">
-                        <i class="fas fa-download mr-2"></i>
-                        Request my CV
-                    </a>
-                </div>
             </div>
         </section>
 
-        <!-- Portfolio Grid -->
+        <!-- Portfolio -->
         <section class="bg-light" id="portfolio">
             <div class="container">
                 <div class="row mb-4">
@@ -86,7 +82,9 @@
                             {{/image}}
                         </a>
                         <div class="portfolio-caption">
-                            <h4>{{title}}</h4>
+                            <a href="/projects/{{id}}.html">
+                                <h4>{{title}}</h4>
+                            </a>
                             <p class="text-muted">{{{subtitle}}}</p>
                         </div>
                     </div>
@@ -154,10 +152,17 @@
                         Feel free to reach out to me at <a href="mailto://giacomo.parmeggiani@gmail.com">giacomo.parmeggiani@gmail.com</a>
                     </div>
                 </div>
+                <div class="text-center mt-4">
+                    <a class="btn btn-xl btn-outline-primary" href="#">
+                        <i class="fas fa-download mr-2"></i>
+                        Request my CV
+                    </a>
+                </div>
             </div>
         </section>
 
         {{> partials/footer }}
+        <script src="/vendor/typed.js/typed.min.js"></script>
         {{> partials/common_js }}
     </body>
 </html>
