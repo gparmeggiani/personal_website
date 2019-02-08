@@ -16,3 +16,7 @@ npm run gulp
 ```
 
 Copy the www folder to the deployment machine
+
+
+## TODO
+- add a reference to the GitHub page
