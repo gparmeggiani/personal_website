@@ -147,6 +147,10 @@ function pages(done){
     //Projects pages
     projects.forEach(function(project){
 
+        if(project.draft) {
+            return
+        }
+
         var extra_partial = "n/a"; //Stupid behavior
         if(project.extra) {
             extra_partial = fs.readFileSync('./src/pages/'+project.extra, 'utf8')

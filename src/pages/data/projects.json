@@ -5,7 +5,8 @@
         "subtitle": "I had the need to dig deeply inside a closed source binary application. Here I'd like to collect what I consider worth sharing",
         "body": null,
         "extra": "projects/win32_reverse_engineering.mustache",
-        "image": "win32_reverse_engineering.png"
+        "image": "win32_reverse_engineering.png",
+        "draft": true
     },
     {
         "id": "kalman-filter-for-gps-and-obdii-data-fusion",
@@ -13,7 +14,8 @@
         "subtitle": "TODO",
         "body": null,
         "extra": null,
-        "image": "kalman-car-simulator.png"
+        "image": "kalman-car-simulator.png",
+        "draft": true
     },
     {
         "id": "iot-environmental-sensor",
@@ -21,7 +23,8 @@
         "subtitle": "Based on the ESP8266",
         "body": null,
         "extra": null,
-        "image": null
+        "image": null,
+        "draft": true
     },
     {
         "id": "elimina-code-integrato-in-wingesfar",
@@ -29,7 +32,8 @@
         "subtitle": "Works with Wingesfar and it is build using microservices architecture: Docker containers and native applications. Communication is based on MQTT",
         "body": null,
         "extra": null,
-        "image": null
+        "image": null,
+        "draft": true
     },
     {
         "id": "5g-coral",
@@ -37,7 +41,8 @@
         "subtitle": "TODO",
         "body": null,
         "extra": null,
-        "image": "5g-coral.jpg"
+        "image": "5g-coral.jpg",
+        "draft": false
     },
     {
         "id": "bespecular",
@@ -45,7 +50,8 @@
         "subtitle": "BeSpecular is an app that lets you help blind & deafblind people identify objects or situations.<br>More info at <a href=\"https://www.bespecular.com\">www.bespecular.com</a>",
         "body": null,
         "extra": "projects/bespecular.mustache",
-        "image": "bespecular_stanford_team.jpg"
+        "image": "bespecular_stanford_team.jpg",
+        "draft": false
     },
     {
         "id": "smart-anchor",
@@ -53,7 +59,8 @@
         "subtitle": "",
         "body": "SmartAnchor is a device that tells you if a boat anchor is dragging or not by detecting its vibrations. This provides the skipper with one more tool that allows him to stay more relaxed if spending the night at anchor. I've done several tests with a device attached on an anchor and linked to the boat via a cable. The first figure shows an example of a measurement. I first devised a system that allows to correctly process the data and trigger an alarm in case of a detection of some vibrations. It computes the RMS value of acceleration over the three axes, then a derivative is computed to detect sudden changes of gravity. This is followed by a low pass filtering and a Schmitt trigger. I'm currently working on the communication between the device and the boat and ultrasonic waves seem like to only option. I built a fully software DBPSK modulator running on the device attached to the anchor. The demodulation is again fully software and uses a Costas loop to reconstruct the carrier frequency (non coherent demodulation). So far it has only been implemented in MATLAB, but using real data that has been transmitted over ultrasonic waves from one side of the room to the other. The last figure shows the demodulation process.",
         "extra": null,
-        "image": "smart_anchor_transmitter.jpg"
+        "image": "smart_anchor_transmitter.jpg",
+        "draft": true
     },
     {
         "id": "cross-coupled-oscillator",
@@ -61,7 +68,8 @@
         "subtitle": "",
         "body": "This circuit is an oscillator and it generates a sinusoidal waveform. Oscillators are circuits that always fascinated me: they can generate a signal on their own, starting from a DC power supply. This particular circuit is based on the classic LC resonant tank. The LC circuit will naturally oscillate at its resonant frequency, but the oscillations will be dumped primarily because of the parasitic resistance of the coil. The idea behind this circuit is to place in parallel with the LC circuit a negative resistance that, in parallel with the parasitic one, will cancel the latter one out, resulting in an equivalent \"infinite\" impedance. Of course, things are much more complicated. I conducted a deep study on this circuit, in particular I used the shooting method (implemented by myself in MATLAB) to accurately compute the oscillation period. The study can be found here (Italian).",
         "extra": null,
-        "image": "cross_coupled.jpg"
+        "image": "cross_coupled.jpg",
+        "draft": false
     },
     {
         "id": "expomash-expo-milano-2015",
@@ -69,7 +77,8 @@
         "subtitle": "A website that uses the Elo's Algorithm to rank the pavillions at EXPO Milano 2015",
         "body": null,
         "extra": null,
-        "image": "expomash.png"
+        "image": "expomash.png",
+        "draft": false
     },
     {
         "id": "msc-thesis",
@@ -77,7 +86,8 @@
         "subtitle": "",
         "body": null,
         "extra": "projects/thesis.mustache",
-        "image": "thesis-readout.jpg"
+        "image": "thesis-readout.jpg",
+        "draft": true
     },
     {
         "id": "joule-thief",
@@ -85,7 +95,8 @@
         "subtitle": "",
         "body": "A Joule Thief is a circuit used to elevate a small DC voltage to a much higher AC voltage. Compared to the classic circuit, the one I built has been modified in order to power a small neon lamp instead of a LED. The neon lamp requires about 160V to ionize the gas it contains and therefore to produce light. Since this voltage cannot be present across the Collector and the Emitter pins of the BJT without burning it, I had to make a little modification to the transformer, adding to it an additional winding connected directly to the neon lamp. This way the voltage will rise both across the neon lamp and the C and E of the transistor, but at two different rates, according to the respective number of loops of the two windings. The voltage across the neon lamp will reach the required 160V before the VCE reaches the breakdown voltage. This circuit fascinates me because it is a boost DC DC converter that also oscillates by itself, exploiting the nonlinearity of the magnetic core",
         "extra": null,
-        "image": "joule_thief.jpg"
+        "image": "joule_thief.jpg",
+        "draft": true
     },
     {
         "id": "class-a-amplifier",
@@ -93,7 +104,8 @@
         "subtitle": "",
         "body": "During my Bachelor's degree my friend Giacomo Petracca and I decided to build some of the circuits we studied in class. The first one we build was a (bulky) class A amplifier, and it has been the first non trivial circuit I have ever designed and not just built or modified. Hearing the music coming out of the loudspeaker connected to it was a big satisfaction!",
         "extra": null,
-        "image": "classA-amplifier.jpg"
+        "image": "classA-amplifier.jpg",
+        "draft": true
     },
     {
         "id": "one-of-my-first-circuits",
@@ -101,6 +113,7 @@
         "subtitle": "This is one of my favorite pictures of when I was a kid. Here I'm demonstrating series vs parallel connections.",
         "body": "This is one of my favorite pictures of when I was a kid. That is me showing my mother a simple circuit I built. I guess that was to show the difference between two lamps connected in series or parallel. In fact, the two at the back of the picture are connected in series and are less bright than the closest one, which is connected in parallel to the other two.",
         "extra": null,
-        "image": "me-4-years-old-thumb.jpg"
+        "image": "me-4-years-old-thumb.jpg",
+        "draft": false
     }
 ]
