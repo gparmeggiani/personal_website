@@ -11,6 +11,7 @@ const rename = require("gulp-rename");
 const sass = require("gulp-sass");
 const uglify = require("gulp-uglify");
 const mustache = require("gulp-mustache");
+var concat = require('gulp-concat');
 
 const pkg = require('./package.json');
 
@@ -66,6 +67,21 @@ function vendor(done) {
         'node_modules/typed.js/lib/typed.min.js'
     ])
     .pipe(gulp.dest('www/vendor/typed.js'))
+
+    // Prism.js
+    gulp.src([
+        'node_modules/prismjs/components/prism-core.min.js',
+        'node_modules/prismjs/components/prism-clike.min.js',
+        'node_modules/prismjs/components/prism-c.min.js'
+    ])
+    .pipe(concat('prism.min.js'))
+    .pipe(gulp.dest('www/vendor/prism.js'))
+
+    gulp.src([
+        'node_modules/prismjs/themes/prism.css',
+        'node_modules/prismjs/themes/prism-okaidia.css'
+    ])
+    .pipe(gulp.dest('www/vendor/prism.js'))
 
     done();
 }

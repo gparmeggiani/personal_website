@@ -75,7 +75,7 @@
                         <a class="portfolio-link" href="/projects/{{id}}.html">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content">
-                                    <i class="fas fa-plus fa-3x"></i>
+                                    <i class="fas fa-search fa-3x"></i>
                                 </div>
                             </div>
                             {{#image}}
@@ -165,6 +165,21 @@
 
         {{> partials/footer }}
         <script src="/vendor/typed.js/typed.min.js"></script>
+        <script>
+            //Typed in the header
+            new Typed('.typed', {
+              strings: ["I'm Giacomo", "I'm a software developer", "I'm a Hardware designer", "I'm in love with technology", "I'm passionate about what I do", "I'm a maker"],
+              typeSpeed: 80,
+              startDelay: 1200,
+               backSpeed: 50,
+               // time before backspacing
+              backDelay: 2000,
+              loop:true,
+              showCursor: true,
+              cursorChar: "|",
+              smartBackspace: false
+            });
+        </script>
         {{> partials/common_js }}
     </body>
 </html>

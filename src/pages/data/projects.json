@@ -2,11 +2,11 @@
     {
         "id": "win32-application-reverse-engineering-and-patching",
         "title": "Win32 application reverse engineering and patching",
-        "subtitle": "I had the need to dig deeply inside a closed source binary application. Here I'd like to collect what I consider worth sharing",
+        "subtitle": "I dug deeply inside some closed-source binary applications. Here I'd like to collect what I consider worth sharing",
         "body": null,
         "extra": "projects/win32_reverse_engineering.mustache",
         "image": "win32_reverse_engineering.png",
-        "draft": true
+        "draft": false
     },
     {
         "id": "kalman-filter-for-gps-and-obdii-data-fusion",

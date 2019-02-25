@@ -1,20 +1,6 @@
 (function($) {
   "use strict"; // Start of use strict
 
-  //Typed in the header
-  new Typed('.typed', {
-    strings: ["I'm Giacomo", "I'm a software developer", "I'm a Hardware designer", "I'm in love with technology", "I'm passionate about what I do", "I'm a maker"],
-    typeSpeed: 80,
-    startDelay: 1200,
-		backSpeed: 50,
-		// time before backspacing
-    backDelay: 2000,
-    loop:true,
-    showCursor: true,
-    cursorChar: "|",
-    smartBackspace: false
-  });
-
   // Smooth scrolling using jQuery easing
   $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
