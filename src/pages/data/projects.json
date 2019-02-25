@@ -11,11 +11,11 @@
     {
         "id": "kalman-filter-for-gps-and-obdii-data-fusion",
         "title": "Kalman filter for GPS and OBD-II data fusion",
-        "subtitle": "TODO",
+        "subtitle": "How to use a Kalman filter to combine the GPS position with the vehicle speed to improve the location accuracy. Still a work in progress.",
         "body": null,
-        "extra": null,
+        "extra": "projects/kalman_gps_obdii.mustache",
         "image": "kalman-car-simulator.png",
-        "draft": true
+        "draft": false
     },
     {
         "id": "iot-environmental-sensor",
@@ -38,8 +38,8 @@
     {
         "id": "5g-coral",
         "title": "5G-CORAL",
-        "subtitle": "TODO",
-        "body": null,
+        "subtitle": "A multi-tier architecture for the Edge and Fog Computing. This is what I'm currently working on at <a href=\"https://www.azcomtech.com\">Azcom Technology</a>",
+        "body": "The H2020 5G-PPP Project named <a href=\"http://5g-coral.eu/\">5G-CORAL</a> is a EU funded research project which involves several european and taiwanese partners. It proposes a multi-tier architecture for the edge and fog computing.<br>At Azcom Technology, I'm responsible for the design and development coordination (hardware and software) of the connected cars testbed, in partnership with TIM.<br>In this video, I briefly describe the testbed architecture and show one of the field trials we did at TIM lab in Torino. <br><br><div class=\"text-center\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/5e8OWrCYPpQ\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe></div><br><br>While working on the project requirements, I collaborated in writing the IEEE <a href=\"https://ieeexplore.ieee.org/document/8436927\">An Integrated, Virtualized Joint Edge and Fog Computing System with Multi-RAT Convergence</a> paper.",
         "extra": null,
         "image": "5g-coral.jpg",
         "draft": false
@@ -56,18 +56,18 @@
     {
         "id": "smart-anchor",
         "title": "Smart Anchor",
-        "subtitle": "",
-        "body": "SmartAnchor is a device that tells you if a boat anchor is dragging or not by detecting its vibrations. This provides the skipper with one more tool that allows him to stay more relaxed if spending the night at anchor. I've done several tests with a device attached on an anchor and linked to the boat via a cable. The first figure shows an example of a measurement. I first devised a system that allows to correctly process the data and trigger an alarm in case of a detection of some vibrations. It computes the RMS value of acceleration over the three axes, then a derivative is computed to detect sudden changes of gravity. This is followed by a low pass filtering and a Schmitt trigger. I'm currently working on the communication between the device and the boat and ultrasonic waves seem like to only option. I built a fully software DBPSK modulator running on the device attached to the anchor. The demodulation is again fully software and uses a Costas loop to reconstruct the carrier frequency (non coherent demodulation). So far it has only been implemented in MATLAB, but using real data that has been transmitted over ultrasonic waves from one side of the room to the other. The last figure shows the demodulation process.",
-        "extra": null,
+        "subtitle": "A device that tells you if a boat anchor is dragging or not by detecting its vibrations",
+        "body": null,
+        "extra": "projects/smartanchor.mustache",
         "image": "smart_anchor_transmitter.jpg",
-        "draft": true
+        "draft": false
     },
     {
         "id": "cross-coupled-oscillator",
         "title": "Cross coupled oscillator",
-        "subtitle": "",
-        "body": "This circuit is an oscillator and it generates a sinusoidal waveform. Oscillators are circuits that always fascinated me: they can generate a signal on their own, starting from a DC power supply. This particular circuit is based on the classic LC resonant tank. The LC circuit will naturally oscillate at its resonant frequency, but the oscillations will be dumped primarily because of the parasitic resistance of the coil. The idea behind this circuit is to place in parallel with the LC circuit a negative resistance that, in parallel with the parasitic one, will cancel the latter one out, resulting in an equivalent \"infinite\" impedance. Of course, things are much more complicated. I conducted a deep study on this circuit, in particular I used the shooting method (implemented by myself in MATLAB) to accurately compute the oscillation period. The study can be found here (Italian).",
-        "extra": null,
+        "subtitle": "A sinusoidal oscillator I built to better understand the topic when I was studying it at the university",
+        "body": null,
+        "extra": "projects/cross_coupled_oscillator.mustache",
         "image": "cross_coupled.jpg",
         "draft": false
     },
@@ -75,7 +75,7 @@
         "id": "expomash-expo-milano-2015",
         "title": "Expomash for EXPO Milano 2015",
         "subtitle": "A website that uses the Elo's Algorithm to rank the pavillions at EXPO Milano 2015",
-        "body": null,
+        "body": "TODO",
         "extra": null,
         "image": "expomash.png",
         "draft": false
@@ -111,7 +111,7 @@
         "id": "one-of-my-first-circuits",
         "title": "One of my first circuits",
         "subtitle": "This is one of my favorite pictures of when I was a kid. Here I'm demonstrating series vs parallel connections.",
-        "body": "This is one of my favorite pictures of when I was a kid. That is me showing my mother a simple circuit I built. I guess that was to show the difference between two lamps connected in series or parallel. In fact, the two at the back of the picture are connected in series and are less bright than the closest one, which is connected in parallel to the other two.",
+        "body": "This is one of my favorite pictures of when I was a kid. That is me showing my mother a simple circuit I built. I guess that was to show the difference between two lamps connected in series or parallel. In fact, the two at the back of the picture are connected in series and are less bright than the closest one, which is connected in parallel to the other two. <div class=\"text-center\"><figure class=\"figure\"><img src=\"/static/img/portfolio/me-4-years-old.jpg\"class=\"figure-img img-fluid rounded\" alt=\"Myself as a kid showing a circuit I built\"><figcaption class=\"figure-caption\">Myself as a kid showing a circuit I built</figcaption></figure></div>",
         "extra": null,
         "image": "me-4-years-old-thumb.jpg",
         "draft": false
