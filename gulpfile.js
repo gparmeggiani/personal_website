@@ -72,7 +72,8 @@ function vendor(done) {
     gulp.src([
         'node_modules/prismjs/components/prism-core.min.js',
         'node_modules/prismjs/components/prism-clike.min.js',
-        'node_modules/prismjs/components/prism-c.min.js'
+        'node_modules/prismjs/components/prism-c.min.js',
+        'node_modules/prismjs/components/prism-python.min.js'
     ])
     .pipe(concat('prism.min.js'))
     .pipe(gulp.dest('www/vendor/prism.js'))

@@ -2,8 +2,9 @@
 <script src="/vendor/prism.js/prism.min.js"></script>
 
 <p>
-Sometimes I like to dig deeply into some x86 Windows executables files so that I can better understand how certain piecies of software work.<br>
-I decided to collect here some of the things I learned and what I think is worth noting. Here's what I'll be talking about:
+Sometimes I like to dig deeply into some x86 Windows executables files so that I can better understand how certain piecies of software work.
+I decided to collect here some of the things I learned and what I think is worth noting.<br>
+Here's what I'll be talking about:
 </p>
 
 <ol>
@@ -12,17 +13,17 @@ I decided to collect here some of the things I learned and what I think is worth
     <a href="#curious-aspects"><li>Curious aspects</li></a>
 </ol>
 
-<h2 id="encryption-reverse-engineering">1. Reverse engineering a proprietary (and very weak) encryption mechanism</h2>
+<h2 id="encryption-reverse-engineering" class="mt-5">1. Reverse engineering a proprietary (and very weak) encryption mechanism</h2>
 <p>
     As part of a personal project I am working on, I had the need to access data stored in some binary files. Unfortunately, the format of those files is proprietary
     and almost no useful information is available online: I kind of was alone in the reverse engineering of the file format.<br>
-    First I disassembled, decompiled and analyzed the piece of software that is used to create and access the binary files. After a few days of headaches and guesses,
-    I managed to collect enough information to correctly dump the data out of the file, which is stored in a sort of a B-Tree data structure. This must have been decided in order to
+    First I disassembled, decompiled and analyzed the DLL that is used to create and access the binary files. After a few days of headaches and guesses,
+    I managed to collect enough information to correctly dump the data out of the file, which is organized in a sort of a B-Tree data structure. This must have been decided in order to
     allow indexed random access to the data records.
 </p>
 <p>
     In addition to simple index data storage, the file format allows for data encryption. The naive encryption method that the engineers who designed the file format put in place made me smile, at first.
-    Then, I started thinking about those companies that rely on securing the data using the built-in encryption mechanism found here
+    Then, I started thinking about those companies that rely on securing the data using the built-in encryption mechanism found here.
 </p>
 <p>
     I'll now explain how the encryption works starting from the disassembly code and then I'll demonstrate how easy it is to simply do a bruteforce attack and
@@ -79,20 +80,69 @@ void encrypt(char *buf, size_t size, int seed)
 </pre>
 
 <p>
-
-TODO: description of the encryption algorithm. Maybe say if it is similar to the enigma machine used in WWII.
-
-The function to decrypt the data is pretty much the same as this one, but instead of
-adding 7, it removes 7 from each data byte.
+This function has an internal state which is initialized with the <code>seed</code> parameter.
+The encryption (even though a better term would be chiper) simply consists in adding the lower 8 bits of the internal state
+to every byte of the input data and let the number overflow. The addition is done byte by byte and the state is incremented
+by 7 at every iteration.
 </p>
-
-<h3>Bruteforce approach to decryption of the data</h3>
+<p>
+Obviously, the function to decrypt the data is exactly the same as this one, but instead of
+adding the state, it is removed from each data byte.
+</p>
+<p>
+Clearly, this is a ridiculously weak way of protecting data. Knowing the initial seed is enough to dechiper all the data.
+However this is anyways not necessary! Let me explain.<br>
+Let's imagine that the original data is the string "Helloworld." which in would correspond to the following hex string
+</p>
+<pre><code>
+48 65 6C 6C 6F 77 6F 72 6C 64 2E
+</code></pre>
 
 <p>
-    TODO
+Now let's apply the encryption algorithm by choosing 0x49 as the seed. The data would become:
+</p>
+<pre><code>
+48 + 49 = 91
+65 + 50 = B5
+6C + 57 = C3
+6C + 5E = CA
+6F + 65 = D4
+77 + 6C = E3
+6F + 73 = E2
+72 + 7A = EC
+6C + 81 = ED
+64 + 88 = EC
+2E + 8F = BD
+</code></pre>
+<p>
+As you can see, this chiper converts two equal characters into different bytes, due to the internal state being updated at every step. This reminded me a little bit of
+the inner workings of the WW-II Enigma Machine. Also, it can happen that two different characters translate to the same byte, as it happened in this example.
+</p>
+<p>
+    Let's consider now that we have the previous knowledge that every data record ends with a '.' which is similar to the approach used to crack the WW-II Enigma.
+    Given this information, we can say that the last byte 0xBD must convert to 0x2E, which is the ascii code for '.'<br>
+    Therefore the internal state is 0xBD - 0x2E = 0x8F.<br>
+    At this point, to obtain the seed it is sufficient to subtract 7 for every byte all the way up to the beginning of the data. i.e. subtract <code>7 * (size-1) = 70 = 0x46</code>.<br>
+    <code>0x8F - 0x46 = 0x49</code> which is the seed used for this example.
 </p>
 
-<h2 id="binary-patching">2. Patching a binary</h2>
+<h3>Bruteforce approach to decrypt the data</h3>
+<p>
+    The method above will give you access to the decrypted data at the first try. However, since the encryption is done byte by byte,
+    the possible values for the initial seed are only 256, which is a reasonable number of attempts for a bruteforce attack.<br>
+    In addition to that, one could add other checks to filer out bad seed guesses, such as checking that all output bytes are within the range
+    of ASCII characters.
+</p>
+<p>
+    Below is a simple python script that implements what I just described
+</p>
+<pre>
+<code class="language-c">
+    print("TODO!")
+</code>
+</pre>
+<hr>
+<h2 id="binary-patching" class="mt-5">2. Patching a binary</h2>
 <p>
 In order to better understand how software licensing can be implemented, in the past I tried to patch an executable so that the license check is skipped.<br>
 I need to say that I did so only for research purposes, that I have a genuine license of the software I studied and that I never did and never will release the patch for that software.<br>
@@ -247,8 +297,8 @@ The only way to prevent binary patching is to <i>require</i> the execution of si
 wasn't the priority. For backward compatibility, execution of unsigned code is possible to this day on many platforms.
 </p>
 
-
-<h2 id="curious-aspects">3. Curious aspects</h2>
+<hr>
+<h2 id="curious-aspects" class="mt-5">3. Curious aspects</h2>
 <h3>Setting a register to 0</h3>
 
 <p>

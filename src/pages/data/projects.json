@@ -1,11 +1,11 @@
 [
     {
-        "id": "win32-application-reverse-engineering-and-patching",
-        "title": "Win32 application reverse engineering and patching",
+        "id": "x86-application-reverse-engineering-and-patching",
+        "title": "x86 application reverse engineering and patching",
         "subtitle": "I dug deeply inside some closed-source binary applications. Here I'd like to collect what I consider worth sharing",
         "body": null,
-        "extra": "projects/win32_reverse_engineering.mustache",
-        "image": "win32_reverse_engineering.png",
+        "extra": "projects/x86_reverse_engineering.mustache",
+        "image": "x86_reverse_engineering.png",
         "draft": false
     },
     {
