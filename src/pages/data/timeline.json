@@ -3,27 +3,27 @@
         "inverted": true,
         "year": "2016 - Today",
         "title": "DSP Software Engineer",
-        "descr": "In January 2017 I started working as a DSP Software Engineer at Azcom:<br>- NB-IoT PHY DSP development<br>- LTE PRACH Format 2 (MATLAB + DSP)<br>- <a href=\"/projects/5g-coral.html\">5G-CORAL<a> Connected Cars testbed in partnership with <a href=\"http://www.tim.it\">TIM</a> (Picture)",
+        "descr": "In January 2017 I started working as a Software Engineer at <a href=\"http://azcom.it\">Azcom Technology</a>:<br>- NB-IoT PHY DSP development<br>- LTE PRACH Format 2 (MATLAB + DSP)<br>- <a href=\"/projects/5g-coral.html\">5G-CORAL<a> Connected Cars testbed in partnership with <a href=\"http://www.tim.it\">TIM</a> (Picture)",
         "image": "giacomo_parmeggiani_azcom.jpg"
     },
     {
         "inverted": false,
         "year": "2014-2016",
         "title": "M.Sc. at Politecnico di Milano",
-        "descr": "in 2016 I graduated (110/110) in Electronics Engineering at <a href=\"https://www.polimi.it\">Politecnico di Milano</a>",
+        "descr": "In 2016 I graduated in Electronics Engineering at <a href=\"https://www.polimi.it\">Politecnico di Milano</a> (110/110)",
         "image": "giacomo_parmeggiani_polimi2.jpg"
     },
     {
         "inverted": true,
         "year": "2014",
         "title": "Founded BeSpecular",
-        "descr": "During a class at Stanford, my team and I created BeSpecular as a class project.<br>Then, <a href=\"https://twitter.com/stephcowper_sa\">Stephanie</a> and I carried on with the project. I took care of all the technology (Fullstack development, DevOps, iOS and Android app)",
+        "descr": "During a class at Stanford, my team and I created <a href=\"/projects/bespecular.html\">BeSpecular</a> as a class project.<br>Then, <a href=\"https://twitter.com/stephcowper_sa\">Stephanie</a> and I carried on with the project. I took care of all the technology (Fullstack development, DevOps, iOS and Android app)",
         "image": "bespecular.jpg"
     },
     {
         "inverted": false,
         "year": "2014",
-        "title": "Stanford Summer School",
+        "title": "Stanford University",
         "descr": "I went to Stanford for a Summer School on Technology Entrepreneurship.<br>What I liked the most? The AMAZING people from all over the World that I met there",
         "image": "giacomo_parmeggiani_stanford.jpg"
     },
@@ -32,7 +32,7 @@
         "year": "2010-2013",
         "title": "B.Sc. at Politecnico di Milano",
         "descr": "I started the Bachelor of Science in Electronics Engineering at <a href=\"https://www.polimi.it\">Politecnico di Milano</a>",
-        "image": null
+        "image": "giacomo_parmeggiani_polimi.jpg"
     },
     {
         "inverted": false,
