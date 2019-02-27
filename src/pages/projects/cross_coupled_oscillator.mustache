@@ -1,3 +1,19 @@
-OSCILLATOR
+<p>
+    This circuit is an oscillator and it generates a sinusoidal waveform.
+</p>
+<p>
+    Oscillators are circuits that always fascinated me: they can generate a signal on their own, starting from a DC power supply.
+    This particular circuit is based on the classic LC resonant tank. The LC circuit will naturally oscillate at its resonant frequency,
+    but the oscillations will be dumped primarily because of the parasitic resistance of the coil.
+    The idea behind this circuit is to place in parallel with the LC circuit a negative resistance that,
+    in parallel with the parasitic one, will cancel the latter one out, resulting in an equivalent "infinite" impedance.
+</p>
+<p>
+    Of course, things are much more complicated. I conducted a deep study on this circuit, in particular I used the
+    shooting method (implemented by myself in MATLAB) to accurately compute the oscillation period.<br>
+    The study can be found below (Italian).
+</p>
 
-This circuit is an oscillator and it generates a sinusoidal waveform. Oscillators are circuits that always fascinated me: they can generate a signal on their own, starting from a DC power supply. This particular circuit is based on the classic LC resonant tank. The LC circuit will naturally oscillate at its resonant frequency, but the oscillations will be dumped primarily because of the parasitic resistance of the coil. The idea behind this circuit is to place in parallel with the LC circuit a negative resistance that, in parallel with the parasitic one, will cancel the latter one out, resulting in an equivalent \"infinite\" impedance. Of course, things are much more complicated. I conducted a deep study on this circuit, in particular I used the shooting method (implemented by myself in MATLAB) to accurately compute the oscillation period. The study can be found here (Italian).
+<a href="/static/CrossCoupledOscillatorStudy_ITA.pdf">Click here to download the PDF file.</a>
+<object data="/static/CrossCoupledOscillatorStudy_ITA.pdf" style="min-height:800px;" height="100%" width="100%" type="application/pdf">
+</object>
