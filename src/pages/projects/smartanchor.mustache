@@ -1,4 +1,44 @@
-SMARTANCHOR
+<p>
+    The idea behind this project is to build a device that provides skippers with one more tool that allows them to stay more relaxed
+    if spending the night at anchor. The device uses an accelerometer to sense vibrations of the anchor and therefore detect if the anchor is dragging on the seabed.
+</p>
+<p>
+    I've done several tests with a device attached on an anchor and linked to the boat via a cable. The first figure shows an example of a
+    measurement.
+</p>
+<p>
+    First, I devised a system that processes the raw acceleration data and triggers an alarm in case of strongh enough vibrations.<br>
+    The signal processing is pretty simple: The RMS value of the acceleration over the three axes is fed through a differentiator in order to detect sudden changes.
+    A low pass filter is also added to reduce the gain at high frequencies.<br>
+    The resulting signal is then sent to a Schmitt trigger which compares it with a threshold that, so far, has been determined experimentally.
+</p>
+<p>
+    In order to wirelessly transmit the alarm to the boat, (and to better understand the topic) I decided to use ultrasounds.<br>
+    Since I wanted to send digital data, I built a fully software-defined DBPSK modulator running on the device attached to
+    the anchor.<br>
+    The demodulation is also fully software-defined and uses a Costas loop to reconstruct the carrier frequency (non coherent
+    demodulation).<br>
+    So far it has only been implemented in MATLAB as a prototype, however it is using real data that has been recorded after having been transmitted over ultrasonic waves
+    from one side of the room to the other. The last figure shows the demodulation process.
+</p>
 
-
-This device provides the skipper with one more tool that allows him or her to stay more relaxed if spending the night at anchor. I've done several tests with a device attached on an anchor and linked to the boat via a cable. The first figure shows an example of a measurement. I first devised a system that allows to correctly process the data and trigger an alarm in case of a detection of some vibrations. It computes the RMS value of acceleration over the three axes, then a derivative is computed to detect sudden changes of gravity. This is followed by a low pass filtering and a Schmitt trigger. I'm currently working on the communication between the device and the boat and ultrasonic waves seem like to only option. I built a fully software DBPSK modulator running on the device attached to the anchor. The demodulation is again fully software and uses a Costas loop to reconstruct the carrier frequency (non coherent demodulation). So far it has only been implemented in MATLAB, but using real data that has been transmitted over ultrasonic waves from one side of the room to the other. The last figure shows the demodulation process.
+<div class="card-group mt-5 mb-5">
+    <div class="card">
+      <img class="card-img-top" src="/static/img/portfolio/smart_anchor_measure.png" alt="Vibrations measured by the accelerometer attached to the anchor.">
+      <div class="card-footer">
+        <small class="text-muted">Vibrations measured by the accelerometer attached to the anchor.</small>
+      </div>
+    </div>
+  <div class="card">
+    <img class="card-img-top" src="/static/img/portfolio/smart_anchor_transmitter.jpg" alt="The device to be attached to the anchor. The communication on this prototype is done through UART">
+    <div class="card-footer">
+      <small class="text-muted">The device to be attached to the anchor. The communication on this prototype is done through UART</small>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="/static/img/portfolio/smart_anchor_DBPSK_demod.png" alt="Tests on DBPSK demodulation">
+    <div class="card-footer">
+      <small class="text-muted">Tests on DBPSK demodulation</small>
+    </div>
+  </div>
+</div>
