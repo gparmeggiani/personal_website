@@ -2,9 +2,9 @@
 <script src="/vendor/prism.js/prism.min.js"></script>
 
 <p>
-Sometimes I like to dig deeply into some x86 Windows executables files so that I can better understand how certain piecies of software work.
-I decided to collect here some of the things I learned and what I think is worth noting.<br>
-Here's what I'll be talking about:
+    Sometimes I like to dig deeply into some x86 Windows executables files so that I can better understand how certain piecies of software work.
+    I decided to collect here some of the things I learned and what I think is worth noting.<br>
+    Here's what I'll be talking about:
 </p>
 
 <ol>
@@ -39,7 +39,7 @@ Here's what I'll be talking about:
 </div>
 
 <p>
-Which translates more or less to the following decompiled C:
+    Which translates more or less to the following decompiled C:
 </p>
 <pre>
 <code class="language-c">
@@ -80,50 +80,50 @@ void encrypt(char *buf, size_t size, int seed)
 </pre>
 
 <p>
-This function has an internal state which is initialized with the <code>seed</code> parameter.
-The encryption (even though a better term would be chiper) simply consists in adding the lower 8 bits of the internal state
-to every byte of the input data and let the number overflow. The addition is done byte by byte and the state is incremented
-by 7 at every iteration.
+    This function has an internal state which is initialized with the <code>seed</code> parameter.
+    The encryption is done simply by adding the lower 8 bits of the internal state
+    to every byte of the input data, letting the number overflow. The addition is done byte by byte and the state is incremented
+    by 7 at every iteration.
 </p>
 <p>
-Obviously, the function to decrypt the data is exactly the same as this one, but instead of
-adding the state, it is removed from each data byte.
+    Obviously, the function to decrypt the data is exactly the same as this one, but instead of
+    adding the state, it is removed from each data byte.
 </p>
 <p>
-Clearly, this is a ridiculously weak way of protecting data. Knowing the initial seed is enough to dechiper all the data.
-However this is anyways not necessary! Let me explain.<br>
-Let's imagine that the original data is the string "Helloworld." which in would correspond to the following hex string
+    Clearly, this is a ridiculously weak way of protecting data. Knowing the initial seed is enough to dechiper all the data.
+    However this is not even necessary, since a bruteforce attack is very feasible! Let me explain.<br>
+    Let's imagine that the original data is the string "Helloworld." which in would correspond to the following hex string
 </p>
 <pre><code>
-48 65 6C 6C 6F 77 6F 72 6C 64 2E
+0x48 0x65 0x6C 0x6C 0x6F 0x77 0x6F 0x72 0x6C 0x64 0x2E
 </code></pre>
 
 <p>
-Now let's apply the encryption algorithm by choosing 0x49 as the seed. The data would become:
+    Now let's apply the encryption algorithm by choosing 0x49 as the seed. The data would become:
 </p>
 <pre><code>
-48 + 49 = 91
-65 + 50 = B5
-6C + 57 = C3
-6C + 5E = CA
-6F + 65 = D4
-77 + 6C = E3
-6F + 73 = E2
-72 + 7A = EC
-6C + 81 = ED
-64 + 88 = EC
-2E + 8F = BD
+0x48 + 0x49 = 0x91
+0x65 + 0x50 = 0xB5
+0x6C + 0x57 = 0xC3
+0x6C + 0x5E = 0xCA
+0x6F + 0x65 = 0xD4
+0x77 + 0x6C = 0xE3
+0x6F + 0x73 = 0xE2
+0x72 + 0x7A = 0xEC
+0x6C + 0x81 = 0xED
+0x64 + 0x88 = 0xEC
+0x2E + 0x8F = 0xBD
 </code></pre>
 <p>
-As you can see, this chiper converts two equal characters into different bytes, due to the internal state being updated at every step. This reminded me a little bit of
-the inner workings of the WW-II Enigma Machine. Also, it can happen that two different characters translate to the same byte, as it happened in this example.
+    As you can see, this chiper converts two equal characters into different bytes, due to the internal state being updated at every step. This reminded me a little bit of
+    the inner workings of the WW-II Enigma Machine. Also, it is interesting to note that two different characters can translate to the same byte, as it happened in this example.
 </p>
 <p>
     Let's consider now that we have the previous knowledge that every data record ends with a '.' which is similar to the approach used to crack the WW-II Enigma.
     Given this information, we can say that the last byte 0xBD must convert to 0x2E, which is the ascii code for '.'<br>
-    Therefore the internal state is 0xBD - 0x2E = 0x8F.<br>
-    At this point, to obtain the seed it is sufficient to subtract 7 for every byte all the way up to the beginning of the data. i.e. subtract <code>7 * (size-1) = 70 = 0x46</code>.<br>
-    <code>0x8F - 0x46 = 0x49</code> which is the seed used for this example.
+    Therefore the internal state at that point is 0xBD - 0x2E = 0x8F.<br>
+    Now, to obtain the seed it is sufficient to subtract 7 for every byte all the way up to the beginning of the data. i.e. subtract <code>7 * (size-1) = 70 = 0x46</code>.<br>
+    <code>0x8F - 0x46 = 0x49</code> which (surprise!) is the seed used for this example.
 </p>
 
 <h3>Bruteforce approach to decrypt the data</h3>
@@ -131,28 +131,80 @@ the inner workings of the WW-II Enigma Machine. Also, it can happen that two dif
     The method above will give you access to the decrypted data at the first try. However, since the encryption is done byte by byte,
     the possible values for the initial seed are only 256, which is a reasonable number of attempts for a bruteforce attack.<br>
     In addition to that, one could add other checks to filer out bad seed guesses, such as checking that all output bytes are within the range
-    of ASCII characters.
+    of printable ASCII characters.
 </p>
 <p>
     Below is a simple python script that implements what I just described
 </p>
 <pre>
 <code class="language-c">
-    print("TODO!")
+enc = [ 0x91, 0xB5, 0xC3, 0xCA, 0xD4, 0xE3, 0xE2, 0xEC, 0xED, 0xEC, 0xBD ]
+
+def decrypt_ascii(in_data, seed):
+
+	ret = in_data[:]
+
+	for i, d in enumerate(in_data):
+		d -= seed
+		if d < 32 or d > 127:
+			return None
+
+		ret[i] = d
+		seed += 7
+
+	return ret
+
+
+for seed in range(0, 0xFF):
+	data = decrypt_ascii(enc, seed)
+	if data:
+		print(str(seed)+': '+''.join(chr(i) for i in data))
 </code>
 </pre>
+<p>
+    Below I put the output of the script. It generated only 23 (out of a total of 256) outputs which are in the range of ASCII characters, and the "Helloworld." text can be easily spotted.
+    Considering that a longer text would cause this filter to be more effective, one can conclude that bruteforce is in
+    fact feasible.
+</p>
+<pre>
+    65: Pmttwwztl6
+    66: Olssv~vysk5
+    67: Nkrru}uxrj4
+    68: Mjqqt|twqi3
+    69: Lipps{svph2
+    70: Khoorzruog1
+    71: Jgnnqyqtnf0
+    72: Ifmmpxpsme/
+    73: Helloworld.
+    74: Gdkknvnqkc-
+    75: Fcjjmumpjb,
+    76: Ebiiltloia+
+    77: Dahhksknh`*
+    78: C`ggjrjmg_)
+    79: B_ffiqilf^(
+    80: A^eehphke]'
+    81: @]ddgogjd\&amp;
+    82: ?\ccfnfic[%
+    83: &gt;[bbemehbZ$
+    84: =ZaadldgaY#
+    85: &lt;Y``ckcf`X&quot;
+    86: ;X__bjbe_W!
+    87: :W^^aiad^V
+</pre>
+
 <hr>
 <h2 id="binary-patching" class="mt-5">2. Patching a binary</h2>
 <p>
-In order to better understand how software licensing can be implemented, in the past I tried to patch an executable so that the license check is skipped.<br>
-I need to say that I did so only for research purposes, that I have a genuine license of the software I studied and that I never did and never will release the patch for that software.<br>
-As I did in the previous project related to file format reverse engineering, I'm using IDA freeware as a tool to help me with the disassembly of the x86 machine code in the binary file.
+    In order to better understand how software licensing can be implemented, in the past I tried to patch an executable so that the license check is skipped.<br>
+    I need to say that I did so only for research purposes, that I have a regular license for the software I studied and that I never did and never will release the patch for that software.<br>
+    As I did in the previously described project related to file format reverse engineering, I'm using IDA freeware as a tool to help me with the disassembly of the x86 machine code in the
+    binary file.
 </p>
 <h3>First dead end</h3>
 <p>
-One of the very first functions that came to my attention was very promising.<br>
-It seemed like that it returns 0 if the license is not valid, while it returns 1 if the license is valid.<br>
-These instructions appear at the very beginning of the function:
+    One of the very first functions that came to my attention was very promising.<br>
+    It seemed like that it returns 0 if the license is not valid, while it returns 1 if the license is valid.<br>
+    These instructions appear at the very beginning of the function:
 </p>
 
 <pre>
@@ -163,7 +215,9 @@ jl      short loc_6004873D
 </code>
 </pre>
 
-which basically translates to C to something like the following, given the fact that <code>loc_6004873D</code> corresponds to the end of the function:
+<p>
+    which basically translates to C to something like the following, given the fact that <code>loc_6004873D</code> corresponds to the end of the function:
+</p>
 <pre>
 <code class="language-c">
 if (word_600A86C0 >= 0) {
@@ -173,23 +227,24 @@ if (word_600A86C0 >= 0) {
 </pre>
 
 <p>
-<code>word_600A86C0</code> is a flag that is initialized in the <code>.data</code> section of the binary to 0xFFFF, which is -1 (two's complement).<br>
-This flag is set to either 0 or 1 by the logic of another function (maybe the function checking for the validity of the license?) and acts as a cache so that if the function is called multiple times,
-the return value is computed only once, stored in this variable and returned immediately in subsequent calls of the function.
+    <code>word_600A86C0</code> is a flag that is initialized in the <code>.data</code> section of the binary to 0xFFFF, which is -1 (two's complement).<br>
+    This flag is set to either 0 or 1 by the logic of another function (maybe the function checking for the validity of the license?) and acts as a cache so that if the function is called multiple times,
+    the return value is computed only once, stored in this variable and returned immediately in subsequent calls of the function.
 </p>
 <p>
-At this point, my idea was to simply change the <code>.data</code> section of the binary and replace the 0xFFFF with a 0x0001. This way the function that sets this value would never be called and
-everything would behave as if that function did execute and returned 1.<br>
-I opened up my hex editor and quickly changed those two bytes from FF FF to 01 00.<br>
-However, that unfortunately did not work. Only one thing changed: the message related to the invalid license was no longer printed to the screen, but everything else (including the software protection mechanism)
-worked as intended. This meant that it was a dead end and that I needed to continue analyzing the assembly code.
+    At this point, my idea was to simply change the <code>.data</code> section of the binary and replace the 0xFFFF with a 0x0001. This way the function that sets this value would never be called and
+    everything would behave as if that function did execute and returned 1.<br>
+    I opened up my hex editor and quickly changed those two bytes from FF FF to 01 00.<br>
+    That unfortunately did not work. Only one thing changed: the message related to the invalid license was no longer printed to the screen, but everything else (including the software protection mechanism)
+    worked as intended. This meant that it was a dead end and that I needed to continue analyzing the assembly code.
 </p>
 
 <h3>Second attempt</h3>
 <p>
-I then decided to look at the application exit code returned to the operating system. It was '10' which is the same exit code returned when the unpatched binary was executed.
-I therefore focused my attention to the point where the function described above was beeing called, and in particular to the branch that the execution takes when 0 is returned:
+    I then decided to look at the application exit code returned to the operating system. It was '10' which is the same exit code returned when the unpatched binary was executed.
+    I therefore focused my attention to the point where the function described above was being called, and in particular to the branch that the execution takes when 0 is returned:
 </p>
+
 <pre>
 <code>
 mov     eax, dword_600c4844
@@ -199,17 +254,17 @@ mov     dword_600c4844, eax
 </pre>
 
 <p>
-which translates to the following C code:
+    which translates to the following C code:
 </p>
 <pre>
 <code class="language-c">
-dword_600c4844 &= 0xFFFFFFFE
+dword_600c4844 &amp;= 0xFFFFFFFE
 </code>
 </pre>
 
 <p>
-This means that the last bit of the dword_600c4844 bitmask is cleared (set to 0).
-I then found a piece of code that checks if this last bit is set:
+    This means that the last bit of the <code>dword_600c4844</code> bitmask is cleared (set to 0).
+    I then found a piece of code that checks if this last bit is set:
 </p>
 
 <pre>
@@ -223,12 +278,12 @@ jmp     loc_6004A9C4
 </pre>
 
 <p>
-<code>loc_6004A9C4</code> is the end of the function. 0x0A is 10 in decimal, which is the exit code in case of a license error.
-The reason why the initial attempt failed is that the last bit of the bitmask never gets set to one.
-The new idea here was to either skip the check of the bit or set the bit.
+    <code>loc_6004A9C4</code> is the end of the function. 0x0A is 10 in decimal, which is the exit code in case of a license error.
+    The reason why the initial attempt failed is that the last bit of the bitmask is never set.
+    The new idea here was to either skip the check of the bit or set the bit.
 </p>
 <p>
-By changing the opcode from 75 to EB, the <code>jnz</code> becomes an unconditional jump <code>jmp</code>, like so:
+    By changing the x86 opcode from 0x75 to 0xEB, the <code>jnz</code> becomes an unconditional jump <code>jmp</code>, like so:
 </p>
 <pre>
 <code>
@@ -236,19 +291,19 @@ jmp     short loc_600490DF
 </code>
 </pre>
 <p>
-...and that did the trick. :)
+    ...and that did the trick. :)
 </p>
 
 <p>
-To sum up, I patched the initial value of word_600A86C0 from FF FF to 01 00 in order not to display the error message related to the license and then patched the jump instruction (75 -> EB) so
-that it ignored the result of the check of the bitmask.
-If I only patched the <code>jnz</code> instruction, the patch would still work, however the error message would always appear.
+    To sum up, I patched the initial value of <code>word_600A86C0</code> from FF FF to 01 00 in order not to display the error message related to the license and then patched the jump instruction (75 -> EB) so
+    that it ignored the result of the check of the bitmask.
+    If I only patched the <code>jnz</code> instruction, the patch would still work, however the error message would always appear.
 </p>
 
 <h3>Other patching ideas</h3>
 <p>
-Another way of patching the binary would be to avoid the call to the previously described function and directly set the last bit of the bitmask instead.
-Let's have a look at that portion of the disassembly code:
+    Another way of patching the binary would be to avoid the call to the previously described function and directly set the last bit of the bitmask instead.
+    Let's have a look at that portion of the disassembly code:
 </p>
 <pre>
 <code>
@@ -274,8 +329,9 @@ loc_60048A61:
 </pre>
 
 <p>
-The idea is to insert the instructions to set the dword_600c4844 to 0x00000001 (maybe other bits have interesting meaning...) by replacing the first few instructions and then insert a NOP slide in order to preserve the original size of the binary. The opcode of the NOP instruction is 90.
-One way to set dword_600c4844 to 1 could be the following:
+    The idea is to insert the instructions to set the <code>dword_600c4844</code> to 0x00000001 (maybe other bits have interesting meaning...) by replacing the first few
+    instructions and then insert a NOP slide in order to preserve the original size of the binary. The opcode of the NOP instruction is 0x90.
+    One way to set <code>dword_600c4844</code> to 1 could be the following:
 </p>
 <pre>
 <code>
@@ -286,15 +342,15 @@ mov     dword_600c4844, eax
 </pre>
 
 <p>
-And this worked too :P
+    And this worked too :P
 </p>
 
 <h3>Conclusion</h3>
 <p>
-I'm sure that there are a lot of other ways to patch this binary in order to bypass the check, and this highlights my goal which is to show how easy it is to change the behaviour of a piece of software.
-The licensing system can be extremely complex, but most of the times (I would guess) it comes down to changing the few instructions that process the output of the license check, which is just a boolean value.<br>
-The only way to prevent binary patching is to <i>require</i> the execution of signed code, which is what's been done with smarphone apps. However computers where born a long time ago, when this kind of software security
-wasn't the priority. For backward compatibility, execution of unsigned code is possible to this day on many platforms.
+    I'm sure that there are a lot of other ways to patch this binary in order to bypass the check, and this highlights my goal which is to show how easy it is to change the behaviour of a piece of software.
+    The licensing system can be extremely complex, but most of the times (I would guess) it comes down to changing the few instructions that process the output of the license check, which is just a boolean value.<br>
+    The only way to prevent binary patching is to <i>require</i> the execution of signed code, which is what's been done with smarphone apps. However computers where born a long time ago, when this kind of software security
+    wasn't the priority. For backward compatibility, execution of unsigned code is possible to this day on many platforms.
 </p>
 
 <hr>
@@ -302,7 +358,7 @@ wasn't the priority. For backward compatibility, execution of unsigned code is p
 <h3>Setting a register to 0</h3>
 
 <p>
-To set the return value (eax register) to zero, the compilers usually optimize it like this:
+    To set the return value (eax register) to zero, compilers usually optimize it like this:
 </p>
 <pre>
 <code>
@@ -311,7 +367,7 @@ xor     eax, eax        | 33 C0
 </pre>
 
 <p>
-In case you want to set it to 1:
+    In case you want to set it to 1:
 </p>
 <pre>
 <code>
@@ -321,7 +377,7 @@ inc     eax             | 40
 </pre>
 
 <p>
-The compiler does this instead of a <code>mov</code> instruction beacuse the opcodes are shorter, as can be seen here:
+    The compiler does this instead of a <code>mov</code> instruction beacuse the opcodes are shorter, as can be seen here:
 </p>
 <pre>
 <code>
@@ -329,5 +385,5 @@ mov eax, 0              | B8 00 00 00 00
 </code>
 </pre>
 <p>
-The hex digits next to each instruction represent the raw assembly instructions. In the first two implementation the code needs 2 or 3 bytes of memory, while the <code>mov</code> instruction requires 5 bytes.
+    The hex digits next to each instruction represent the raw assembly bytes. In the first two implementations the code needs 2 or 3 bytes of memory, while the <code>mov</code> instruction requires 5 bytes.
 </p>
