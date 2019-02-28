@@ -2,8 +2,8 @@
     {
         "inverted": true,
         "year": "2016 - Today",
-        "title": "DSP Software Engineer",
-        "descr": "In January 2017 I started working as a Software Engineer at <a href=\"http://azcom.it\">Azcom Technology</a>:<br>- NB-IoT PHY DSP development<br>- LTE PRACH Format 2 (MATLAB + DSP)<br>- <a href=\"/projects/5g-coral.html\">5G-CORAL<a> Connected Cars testbed in partnership with <a href=\"http://www.tim.it\">TIM</a> (Picture)",
+        "title": "Software Engineer",
+        "descr": "In January 2017 I started working as a DSP Software Engineer at <a href=\"http://azcom.it\">Azcom Technology</a>:<br>- NB-IoT PHY DSP development<br>- LTE PRACH Format 2 (MATLAB + DSP)<br>- <a href=\"/projects/5g-coral.html\">5G-CORAL<a> Connected Cars testbed in partnership with <a href=\"http://www.tim.it\">TIM</a> (Picture)",
         "image": "giacomo_parmeggiani_azcom.jpg"
     },
     {
