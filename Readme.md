@@ -35,7 +35,7 @@ npm run gulp
 At this point, copy the `www` folder to the web server root.
 
 ## TODO
-- add a reference to the GitHub page
+- Split the x86 article into a series of 3 articles
 - Is <article> worth using?
 - Test accessibility
 - Test on iPhone (and friends) notch

@@ -16,19 +16,20 @@
 <h2 id="encryption-reverse-engineering" class="mt-5">1. Reverse engineering a proprietary (and very weak) encryption mechanism</h2>
 <p>
     As part of a personal project I am working on, I had the need to access data stored in some binary files. Unfortunately, the format of those files is proprietary
-    and almost no useful information is available online: I kind of was alone in the reverse engineering of the file format.<br>
-    First I disassembled, decompiled and analyzed the DLL that is used to create and access the binary files. After a few days of headaches and guesses,
-    I managed to collect enough information to correctly dump the data out of the file, which is organized in a sort of a B-Tree data structure. This must have been decided in order to
+    and almost no useful information is available online: I was basically alone in the reverse engineering of the file format.<br>
+    First I disassembled, decompiled and analyzed the official DLL that is used to create and access the binary files. After a few days of headaches and guesses,
+    I managed to collect enough information to correctly dump the data out of the file, which is organized in a data structure very similar to a B-Tree. This must have been decided in order to
     allow indexed random access to the data records.
 </p>
 <p>
-    In addition to simple index data storage, the file format allows for data encryption. The naive encryption method that the engineers who designed the file format put in place made me smile, at first.
+    In addition to simple index data storage, the file format allows for data encryption, on a record base. The naive encryption method that the engineers who designed the file format put
+    in place made me smile, at first.<br>
     Then, I started thinking about those companies that rely on securing the data using the built-in encryption mechanism found here.
 </p>
 <p>
     I'll now explain how the encryption works starting from the disassembly code and then I'll demonstrate how easy it is to simply do a bruteforce attack and
     decrypt the data.<br>
-    The picture below is a screenshot of the IDA Freeware tool which shows the disassemby of the encryption subroutine.
+    The picture below is a screenshot of IDA which shows the disassemby of the encryption subroutine.
 </p>
 
 <div class="text-center">
@@ -39,11 +40,10 @@
 </div>
 
 <p>
-    Which translates more or less to the following decompiled C:
+    Which translates more or less to the following decompiled C code:
 </p>
 <pre>
-<code class="language-c">
-/**
+<code class="language-c">/**
  * Encrypt the data stored in buf, byte by byte
  */
 void encrypt(char *buf, size_t size, int seed)
@@ -90,7 +90,7 @@ void encrypt(char *buf, size_t size, int seed)
     adding the state, it is removed from each data byte.
 </p>
 <p>
-    Clearly, this is a ridiculously weak way of protecting data. Knowing the initial seed is enough to dechiper all the data.
+    Clearly, this is a ridiculously weak way of protecting data. Knowing the initial 8-bit seed is enough to dechiper all the data.
     However this is not even necessary, since a bruteforce attack is very feasible! Let me explain.<br>
     Let's imagine that the original data is the string "Helloworld." which in would correspond to the following hex string
 </p>
@@ -119,7 +119,7 @@ void encrypt(char *buf, size_t size, int seed)
     the inner workings of the WW-II Enigma Machine. Also, it is interesting to note that two different characters can translate to the same byte, as it happened in this example.
 </p>
 <p>
-    Let's consider now that we have the previous knowledge that every data record ends with a '.' which is similar to the approach used to crack the WW-II Enigma.
+    Let's consider now that we have the previous knowledge that every data record ends with a '.' which is actually pretty similar to the approach used by A. Turing to crack the WW-II Enigma.
     Given this information, we can say that the last byte 0xBD must convert to 0x2E, which is the ascii code for '.'<br>
     Therefore the internal state at that point is 0xBD - 0x2E = 0x8F.<br>
     Now, to obtain the seed it is sufficient to subtract 7 for every byte all the way up to the beginning of the data. i.e. subtract <code>7 * (size-1) = 70 = 0x46</code>.<br>
@@ -137,7 +137,7 @@ void encrypt(char *buf, size_t size, int seed)
     Below is a simple python script that implements what I just described
 </p>
 <pre>
-<code class="language-c">
+<code class="language-python">#!/usr/bin/env python3
 enc = [ 0x91, 0xB5, 0xC3, 0xCA, 0xD4, 0xE3, 0xE2, 0xEC, 0xED, 0xEC, 0xBD ]
 
 def decrypt_ascii(in_data, seed):
