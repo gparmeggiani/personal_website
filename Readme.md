@@ -1,22 +1,41 @@
 # Personal website
-TODO
+My personal website. Here I collect my work and other things I believe are worth sharing.  
+This is version 2.0, built in 2019
 
-## Develop
-Install all the dependencies and start the browser as follows
+## Development
+This website is built statically using Gulp. NPM is used to fetch the packages required both for the website itself (such as bootstrap) and for the build process (e.g. Gulp).
+
+The build process takes the source files in the `src` directory and the necessary files form the `node_modules` directory and builds the `www` directory and its contents, according to what is defined in the `gulpfile.js`
+
+### Install or update the Node modules
+Install or update all the dependencies as follows:
 ```
 npm install
+```
+or
+```
+npm update
+```
+
+### Run the development environment
+```
 npm run gulp dev
 ```
-Note: if you want to update the installed modules run `npm update`
+This will run the Gulp default task, which will build the `www` directory and a browser will load with its contents.  
+In addition to that, the `src` folder will be watched for changes and the browser will automatically update its contents to reflect the new changes.
 
 ## Deploy
+### Build
+First al all, make sure to have the NPM modules installed. Otherwise run `npm install` or `npm update`  
+To build the `www` directory, simply run
 ```
-npm install
 npm run gulp
 ```
 
-Copy the www folder to the deployment machine
-
+At this point, copy the `www` folder to the web server root.
 
 ## TODO
 - add a reference to the GitHub page
+- Is <article> worth using?
+- Test accessibility
+- Test on iPhone (and friends) notch
