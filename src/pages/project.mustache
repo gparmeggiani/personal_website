@@ -6,6 +6,9 @@
         <meta name="description" content="{{descr}}"/>
         <meta name="author" content="Giacomo Parmeggiani">
 
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
         <title>{{title}}</title>
 
         {{> partials/common_css }}
@@ -43,5 +46,8 @@
 
         {{> partials/footer }}
         {{> partials/common_js }}
+        <script>
+            $('.nav-link.portfolio').addClass("active");
+        </script>
     </body>
     </html>

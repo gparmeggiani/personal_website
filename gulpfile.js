@@ -2,7 +2,6 @@
 const del = require('del');
 const fs = require('fs');
 const gulp = require("gulp");
-const autoprefixer = require("gulp-autoprefixer");
 const browsersync = require("browser-sync").create();
 const cleanCSS = require("gulp-clean-css");
 const header = require("gulp-header");
@@ -95,10 +94,6 @@ function css(done) {
       outputStyle: "expanded"
     }))
     .on("error", sass.logError)
-    .pipe(autoprefixer({
-      browsers: ['last 2 versions'],
-      cascade: false
-    }))
     .pipe(header(cstyle_banner, {
       pkg: pkg
     }))

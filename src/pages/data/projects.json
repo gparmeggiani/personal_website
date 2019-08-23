@@ -9,11 +9,11 @@
         "draft": false
     },
     {
-        "id": "kalman-filter-for-gps-and-obdii-data-fusion",
-        "title": "Kalman filter for GPS and OBD-II data fusion",
-        "subtitle": "How to use a Kalman filter to combine the GPS position with the vehicle speed to improve the location accuracy. Still a work in progress.",
+        "id": "sensor-fusion-for-gps-location-estimation-with-kalman-filters",
+        "title": "Sensor fusion for GPS location estimation with Kalman filters",
+        "subtitle": "A sneak peak into how I'm using a Kalman filter to combine the GPS position with the vehicle speed to improve the location estimation accuracy.",
         "body": null,
-        "extra": "projects/kalman_gps_obdii.mustache",
+        "extra": "projects/sensor_fusion_with_kalman_filters.mustache",
         "image": "kalman-car-simulator.png",
         "draft": false
     },
@@ -31,17 +31,17 @@
         "title": "Queue management system",
         "subtitle": "Works with Wingesfar and it is build using microservices architecture: Docker containers and native applications. Communication is based on MQTT",
         "body": null,
-        "extra": null,
+        "extra": "projects/eliminacode-wingesfar.mustache",
         "image": null,
         "draft": true
     },
     {
         "id": "5g-coral",
         "title": "5G-CORAL",
-        "subtitle": "A multi-tier architecture for the Edge and Fog Computing. This is what I'm currently working on at <a href=\"https://www.azcomtech.com\">Azcom Technology</a>",
-        "body": "The H2020 5G-PPP Project named <a href=\"http://5g-coral.eu/\">5G-CORAL</a> is a EU funded research project which involves several european and taiwanese partners. It proposes a multi-tier architecture for the edge and fog computing.<br>At Azcom Technology, I'm responsible for the design and development coordination (hardware and software) of the connected cars testbed, in partnership with TIM (Telecom Italia).<br>In this video, I briefly describe the testbed architecture and show one of the field trials we did at TIM lab in Torino. <br><br><div class=\"text-center\"><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/5e8OWrCYPpQ\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe></div><br><br>While working on the project requirements, I collaborated in writing the IEEE <a href=\"https://ieeexplore.ieee.org/document/8436927\">An Integrated, Virtualized Joint Edge and Fog Computing System with Multi-RAT Convergence</a> paper.",
-        "extra": null,
-        "image": "5g-coral.jpg",
+        "subtitle": "A multi-tier architecture for the Edge and Fog Computing. I designed, developed and showcased the connected cars demo",
+        "body": null,
+        "extra": "projects/5g-coral.mustache",
+        "image": "5g-coral.png",
         "draft": false
     },
     {

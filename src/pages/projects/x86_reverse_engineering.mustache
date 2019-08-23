@@ -235,13 +235,12 @@ if (word_600A86C0 >= 0) {
     At this point, my idea was to simply change the <code>.data</code> section of the binary and replace the 0xFFFF with a 0x0001. This way the function that sets this value would never be called and
     everything would behave as if that function did execute and returned 1.<br>
     I opened up my hex editor and quickly changed those two bytes from FF FF to 01 00.<br>
-    That unfortunately did not work. Only one thing changed: the message related to the invalid license was no longer printed to the screen, but everything else (including the software protection mechanism)
-    worked as intended. This meant that it was a dead end and that I needed to continue analyzing the assembly code.
+    That unfortunately did not work. However, one thing changed: the message related to the invalid license was no longer printed to the screen, but everything else (including the software protection mechanism) worked as intended. This meant that it was a dead end and that I needed to continue analyzing the assembly code.
 </p>
 
 <h3>Second attempt</h3>
 <p>
-    I then decided to look at the application exit code returned to the operating system. It was '10' which is the same exit code returned when the unpatched binary was executed.
+    I then decided to look at the application exit code returned to the operating system after this patch. It was '10', which is the same exit code returned when the unpatched binary was executed.
     I therefore focused my attention to the point where the function described above was being called, and in particular to the branch that the execution takes when 0 is returned:
 </p>
 
@@ -350,7 +349,7 @@ mov     dword_600c4844, eax
     I'm sure that there are a lot of other ways to patch this binary in order to bypass the check, and this highlights my goal which is to show how easy it is to change the behaviour of a piece of software.
     The licensing system can be extremely complex, but most of the times (I would guess) it comes down to changing the few instructions that process the output of the license check, which is just a boolean value.<br>
     The only way to prevent binary patching is to <i>require</i> the execution of signed code, which is what's been done with smarphone apps. However computers where born a long time ago, when this kind of software security
-    wasn't the priority. For backward compatibility, execution of unsigned code is possible to this day on many platforms.
+    wasn't the priority. For backward compatibility, execution of unsigned code is still possible to this day on many platforms.
 </p>
 
 <hr>
