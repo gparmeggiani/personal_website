@@ -1,11 +1,11 @@
 <p>
-    Among the other things, the software I developed for the 5G-CORAL project (connected cars demo) acquires the vehicle's speed from
-    the OBD-II connector and gets its position from the GNSS receiver.
+    The software I developed for the 5G-CORAL project (connected cars demo) acquires several parameters, among which the vehicle's speed from
+    the OBD-II port and the position from the GNSS receiver.
 </p>
 <p>
-    This inspired me to better understand the topic of sensor fusion, in particular I wanted to know how I could improve the accuracy of the GPS location by exploiting the knowledge of the speed of the vehicle, measured from the wheels RPM. The idea behind this is pretty simple and intuitive. Let me try to explain:<br>
-    If, due to random noise, the GPS location of the car jumps by several meters in a short amount of time, that would correspond to a sudden acceleration and change of speed. Since the speed of the car can be measured from the OBD-II port, it is possible to validate the accuracy of the GPS reading.<br>
-    In other words, it is possible to estimate the velocity of a vehicle by taking two GPS readings, calculate the distance between them and then by dividing by the elapsed time. The speed obtained in this way can be compared to a direct measure of the vehicle's speed and therefore it is possible to tell if the two measurements agree or not. If they don't, it means that the GPS position (which is considered to be more noisy) is inaccurate and the estimated position is picked to be a weighted average between the GPS position and the position predicted using the knowledge of the path of the vehicle up to that point and its current state (e.g. speed).<br>
+    This inspired me to better understand the topic of sensor fusion, in particular I wanted to know how I could improve the accuracy of the GPS location by exploiting the knowledge of the speed of the vehicle, measured from the wheels' RPM. The idea behind this is pretty simple and intuitive. Let me try to explain:<br>
+    If, due to random noise, the GPS location of the car jumps by several meters in a short amount of time, that would correspond to a sudden acceleration and change of speed. Since the speed of the car can be measured, it is possible to cross check the accuracy of the GPS reading.<br>
+    In other words, it is possible to estimate the velocity of a vehicle by taking two GPS readings, calculate the distance between them and then by dividing by the elapsed time. The speed obtained in this way can be compared to a direct measure of the vehicle's speed and therefore it is possible to tell if the two measurements agree or not. If they don't, it means that the GPS position (which is considered to be more noisy) is inaccurate and the estimated position should be picked as a weighted average between the GPS position and the position predicted using the knowledge of the path of the vehicle up to that point and its current state (e.g. speed).<br>
     This logic is typically implemented using a Kalman Filter or its derivatives, such as the EKF (Extended Kalman Filter) or the UKF (Unscented Kalman Filter) which are used to deal with non linearities in the system or in the measurement.
 </p>
 <p>
@@ -20,5 +20,5 @@
     </figure>
 </div>
 <p>
-    This is still a work in progress and the next steps will be to use the IMU (accelerometer and gyroscope) readings to better improve the location estimate. Also, the currently used single-track bycicle model might be improved. In addition to this, I might consider using and adaptive filtering approach where more than one model is used for the state prediction and the best performing one is picked dynamically at runtime.
+    This is still a work in progress and the next steps will be to use the IMU (accelerometer and gyroscope) readings to better improve the location estimate by means of sensor fusion. Also, the currently used single-track bycicle model can be improved. In addition to this, I might consider using and adaptive filtering approach where more than one model is used for the state prediction and the best performing one is picked dynamically at runtime.
 </p>

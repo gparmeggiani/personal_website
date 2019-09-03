@@ -20,7 +20,7 @@
         "bootstrap": "^4.3.1",
         "jquery": "^3.4.1",
         "jquery.easing": "^1.4.1",
-        "prismjs": "^1.16.0",
+        "prismjs": "^1.17.1",
         "typed.js": "^2.0.10"
     },
     "devDependencies": {
@@ -32,7 +32,7 @@
         "gulp-concat": "^2.6.1",
         "gulp-filter": "^5.1.0",
         "gulp-header": "^2.0.9",
-        "gulp-mustache": "^4.1.1",
+        "gulp-mustache": "^4.1.2",
         "gulp-plumber": "^1.2.1",
         "gulp-rename": "1.4.0",
         "gulp-sass": "^4.0.2",
