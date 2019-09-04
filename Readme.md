@@ -34,8 +34,6 @@ npm run gulp
 At this point, copy the `www` folder to the web server root.
 
 ## TODO
-- Fix double line text in header which makes the body jump up and down
-- Fix <pre> left margin
 - Add error pages: /error-pages/404.html
 - Is <article> worth using?
 - Test accessibility

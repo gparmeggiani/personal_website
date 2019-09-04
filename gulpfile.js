@@ -78,6 +78,11 @@ function vendor(done) {
     .pipe(gulp.dest('www/vendor/prism.js'))
 
     gulp.src([
+        'node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.min.js'
+    ])
+    .pipe(gulp.dest('www/vendor/prism.js'))
+
+    gulp.src([
         'node_modules/prismjs/themes/prism.css',
         'node_modules/prismjs/themes/prism-okaidia.css'
     ])

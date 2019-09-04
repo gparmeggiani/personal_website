@@ -1,5 +1,4 @@
 <link href="/vendor/prism.js/prism-okaidia.css" rel="stylesheet" />
-<script src="/vendor/prism.js/prism.min.js"></script>
 
 <p>
     Sometimes I like to dig deeply into some x86 Windows executables files so that I can better understand how certain piecies of software work.
@@ -94,14 +93,14 @@ void encrypt(char *buf, size_t size, int seed)
     However this is not even necessary, since a bruteforce attack is very feasible! Let me explain.<br>
     Let's imagine that the original data is the string "Helloworld." which in would correspond to the following hex string
 </p>
-<pre><code>
+<pre><code class="language-c">
 0x48 0x65 0x6C 0x6C 0x6F 0x77 0x6F 0x72 0x6C 0x64 0x2E
 </code></pre>
 
 <p>
     Now let's apply the encryption algorithm by choosing 0x49 as the seed. The data would become:
 </p>
-<pre><code>
+<pre><code class="language-c">
 0x48 + 0x49 = 0x91
 0x65 + 0x50 = 0xB5
 0x6C + 0x57 = 0xC3
@@ -162,35 +161,34 @@ for seed in range(0, 0xFF):
 </code>
 </pre>
 <p>
-    Below I put the output of the script. It generated only 23 (out of a total of 256) outputs which are in the range of ASCII characters, and the "Helloworld." text can be easily spotted.
+    Below I put the output of the script. It generated only 22 (out of a total of 256) outputs which are in the range of ASCII characters, and the "Helloworld." text can be easily spotted.
     Considering that a longer text would cause this filter to be more effective, one can conclude that bruteforce is in
     fact feasible.
 </p>
-<pre>
-    65: Pmttwwztl6
-    66: Olssv~vysk5
-    67: Nkrru}uxrj4
-    68: Mjqqt|twqi3
-    69: Lipps{svph2
-    70: Khoorzruog1
-    71: Jgnnqyqtnf0
-    72: Ifmmpxpsme/
-    73: Helloworld.
-    74: Gdkknvnqkc-
-    75: Fcjjmumpjb,
-    76: Ebiiltloia+
-    77: Dahhksknh`*
-    78: C`ggjrjmg_)
-    79: B_ffiqilf^(
-    80: A^eehphke]'
-    81: @]ddgogjd\&amp;
-    82: ?\ccfnfic[%
-    83: &gt;[bbemehbZ$
-    84: =ZaadldgaY#
-    85: &lt;Y``ckcf`X&quot;
-    86: ;X__bjbe_W!
-    87: :W^^aiad^V
-</pre>
+<pre><code class="language-c">
+66: Olssv~vysk5
+67: Nkrru}uxrj4
+68: Mjqqt|twqi3
+69: Lipps{svph2
+70: Khoorzruog1
+71: Jgnnqyqtnf0
+72: Ifmmpxpsme/
+73: Helloworld.
+74: Gdkknvnqkc-
+75: Fcjjmumpjb,
+76: Ebiiltloia+
+77: Dahhksknh`*
+78: C`ggjrjmg_)
+79: B_ffiqilf^(
+80: A^eehphke]'
+81: @]ddgogjd\&amp;
+82: ?\ccfnfic[%
+83: &gt;[bbemehbZ$
+84: =ZaadldgaY#
+85: &lt;Y``ckcf`X&quot;
+86: ;X__bjbe_W!
+87: :W^^aiad^V
+</code></pre>
 
 <hr>
 <h2 id="binary-patching" class="mt-5">2. Patching a binary</h2>
@@ -208,7 +206,7 @@ for seed in range(0, 0xFF):
 </p>
 
 <pre>
-<code>
+<code class="language-c">
 movsx   eax, word_600A86C0
 test    eax, eax
 jl      short loc_6004873D
@@ -245,7 +243,7 @@ if (word_600A86C0 >= 0) {
 </p>
 
 <pre>
-<code>
+<code class="language-c">
 mov     eax, dword_600c4844
 and     eax, 0FFFFFFFEh
 mov     dword_600c4844, eax
@@ -267,7 +265,7 @@ dword_600c4844 &amp;= 0xFFFFFFFE
 </p>
 
 <pre>
-<code>
+<code class="language-c">
 mov     eax, dword_600c4844
 and     eax, 1
 jnz     short loc_600490DF
@@ -285,7 +283,7 @@ jmp     loc_6004A9C4
     By changing the x86 opcode from 0x75 to 0xEB, the <code>jnz</code> becomes an unconditional jump <code>jmp</code>, like so:
 </p>
 <pre>
-<code>
+<code class="language-c">
 jmp     short loc_600490DF
 </code>
 </pre>
@@ -305,7 +303,7 @@ jmp     short loc_600490DF
     Let's have a look at that portion of the disassembly code:
 </p>
 <pre>
-<code>
+<code class="language-c">
 loc_60048A32:
 lea     ecx, [ebp+var_448]
 push    ecx
@@ -333,7 +331,7 @@ loc_60048A61:
     One way to set <code>dword_600c4844</code> to 1 could be the following:
 </p>
 <pre>
-<code>
+<code class="language-c">
 xor     eax, eax
 inc     eax
 mov     dword_600c4844, eax
@@ -360,7 +358,7 @@ mov     dword_600c4844, eax
     To set the return value (eax register) to zero, compilers usually optimize it like this:
 </p>
 <pre>
-<code>
+<code class="language-c">
 xor     eax, eax        | 33 C0
 </code>
 </pre>
@@ -369,7 +367,7 @@ xor     eax, eax        | 33 C0
     In case you want to set it to 1:
 </p>
 <pre>
-<code>
+<code class="language-c">
 xor     eax, eax        | 33 C0
 inc     eax             | 40
 </code>
@@ -379,10 +377,22 @@ inc     eax             | 40
     The compiler does this instead of a <code>mov</code> instruction beacuse the opcodes are shorter, as can be seen here:
 </p>
 <pre>
-<code>
+<code class="language-c">
 mov eax, 0              | B8 00 00 00 00
 </code>
 </pre>
 <p>
     The hex digits next to each instruction represent the raw assembly bytes. In the first two implementations the code needs 2 or 3 bytes of memory, while the <code>mov</code> instruction requires 5 bytes.
 </p>
+
+
+<script src="/vendor/prism.js/prism.min.js"></script>
+<script src="/vendor/prism.js/prism-normalize-whitespace.min.js"></script>
+<script>
+    Prism.plugins.NormalizeWhitespace.setDefaults({
+    'remove-trailing': true,
+    'remove-indent': true,
+    'left-trim': true,
+    'right-trim': true
+});
+</script>
