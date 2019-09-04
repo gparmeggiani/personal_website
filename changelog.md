@@ -4,6 +4,7 @@
 - Files tree structure updated
 - [TODO] Add version query parameter for css, js and image files
 - [TODO] Remove 'extra' field in porfolio JSON format
+- [TODO] Smooth scrool in "be part of my story" link
 
 ## 2.2
 - Fix typos, minor visual refactoring
