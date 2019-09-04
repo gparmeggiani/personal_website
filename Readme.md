@@ -1,5 +1,5 @@
 # Personal website
-My personal website. Here I collect my work and other things I believe are worth sharing.  
+My personal website, where I collect my work and other things I believe are worth sharing.  
 This is version 2.0, built in 2019
 
 ## Development
@@ -25,7 +25,6 @@ This will run the Gulp default task, which will build the `www` directory and a 
 In addition to that, the `src` folder will be watched for changes and the browser will automatically update its contents to reflect the new changes.
 
 ## Deploy
-### Build
 First al all, make sure to have the NPM modules installed. Otherwise run `npm install` or `npm update`  
 To build the `www` directory, simply run
 ```
@@ -35,7 +34,10 @@ npm run gulp
 At this point, copy the `www` folder to the web server root.
 
 ## TODO
-- Split the x86 article into a series of 3 articles
+- Fix double line text in header which makes the body jump up and down
+- Fix links issues on mobile
+- Fix portfolio pages layout for mobile
+- Add canonical URL
 - Is <article> worth using?
 - Test accessibility
 - Test on iPhone (and friends) notch
