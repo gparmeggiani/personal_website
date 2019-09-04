@@ -111,7 +111,7 @@
         "id": "one-of-my-first-circuits",
         "title": "One of my first circuits",
         "subtitle": "This is one of my favorite pictures of when I was a kid. Here I'm demonstrating series vs parallel connections.",
-        "body": "This is one of my favorite pictures of when I was a kid. That is me showing my mother a simple circuit I built. I guess that was to show the difference between two lamps connected in series or parallel. In fact, the two at the back of the picture are connected in series and are less bright than the closest one, which is connected in parallel to the other two. <div class=\"text-center\"><figure class=\"figure\"><img src=\"/static/img/portfolio/me-4-years-old.jpg\"class=\"figure-img img-fluid rounded\" alt=\"Myself as a kid showing a circuit I built\"><figcaption class=\"figure-caption\">Myself as a kid showing a circuit I built</figcaption></figure></div>",
+        "body": "This is one of my favorite pictures of when I was a kid. That is me showing my mother a simple circuit I built. I guess that was to show the difference between two lamps connected in series or parallel. In fact, the two at the back of the picture are connected in series and are less bright than the closest one, which is connected in parallel to the other two. <div class=\"text-center\"><figure class=\"figure\"><img src=\"/img/portfolio/me-4-years-old.jpg\"class=\"figure-img img-fluid rounded\" alt=\"Myself as a kid showing a circuit I built\"><figcaption class=\"figure-caption\">Myself as a kid showing a circuit I built</figcaption></figure></div>",
         "extra": null,
         "image": "me-4-years-old-thumb.jpg",
         "draft": false

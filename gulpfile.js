@@ -32,42 +32,37 @@ function clean(done) {
     done();
 }
 
-// create the 'vendor' folder by copying third party libraries from /node_modules into /www/vendor
+// Copy vendor files to the /js and/or /css folders
 function vendor(done) {
-    // Bootstrap
+    
+    // --------------------------------------------------------------------------------------
+    //Third party CSS files
     gulp.src([
-        'node_modules/bootstrap/dist/**/*',
-        '!node_modules/bootstrap/dist/css/bootstrap-grid*',
-        '!node_modules/bootstrap/dist/css/bootstrap-reboot*'
+        'node_modules/bootstrap/dist/css/bootstrap.min.css',        // Bootstrap
+        'node_modules/prismjs/themes/prism.css',                    // Prism.js
+        'node_modules/prismjs/themes/prism-okaidia.css'           
     ])
-    .pipe(gulp.dest('www/vendor/bootstrap'))
+    .pipe(gulp.dest('www/css'))
 
-    // Font Awesome
+    // Font awesome
     gulp.src([
-        'node_modules/@fortawesome/**/*',
+        'node_modules/@fortawesome/fontawesome-free/css/all.min.css'           
     ])
-    .pipe(gulp.dest('www/vendor'))
+    .pipe(rename('fontawesome-all.min.css'))
+    .pipe(gulp.dest('www/css'))
 
-    // jQuery
+    // --------------------------------------------------------------------------------------
+    // Third party JS files
     gulp.src([
-        'node_modules/jquery/dist/*',
-        '!node_modules/jquery/dist/core.js'
+        'node_modules/jquery/dist/jquery.min.js',                   // jQuery
+        'node_modules/jquery.easing/jquery.easing.min.js',          // jQuery Easing
+        'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',   // Bootstrap
+        'node_modules/typed.js/lib/typed.min.js',                   // Typed.js
+        'node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.min.js'
     ])
-    .pipe(gulp.dest('www/vendor/jquery'))
+    .pipe(gulp.dest('www/js'))
 
-    // jQuery Easing
-    gulp.src([
-        'node_modules/jquery.easing/*.js'
-    ])
-    .pipe(gulp.dest('www/vendor/jquery-easing'))
-
-    // Typed.js
-    gulp.src([
-        'node_modules/typed.js/lib/typed.min.js'
-    ])
-    .pipe(gulp.dest('www/vendor/typed.js'))
-
-    // Prism.js
+    // Prism.js (build custom js file by concatenating the required ones)
     gulp.src([
         'node_modules/prismjs/components/prism-core.min.js',
         'node_modules/prismjs/components/prism-clike.min.js',
@@ -75,19 +70,18 @@ function vendor(done) {
         'node_modules/prismjs/components/prism-python.min.js'
     ])
     .pipe(concat('prism.min.js'))
-    .pipe(gulp.dest('www/vendor/prism.js'))
+    .pipe(gulp.dest('www/js'))
 
+    // --------------------------------------------------------------------------------------
+    // Other files
+
+    // Font awesome
     gulp.src([
-        'node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.min.js'
+        'node_modules/@fortawesome/fontawesome-free/webfonts/*'           
     ])
-    .pipe(gulp.dest('www/vendor/prism.js'))
+    .pipe(gulp.dest('www/webfonts'))
 
-    gulp.src([
-        'node_modules/prismjs/themes/prism.css',
-        'node_modules/prismjs/themes/prism-okaidia.css'
-    ])
-    .pipe(gulp.dest('www/vendor/prism.js'))
-
+    // --------------------------------------------------------------------------------------
     done();
 }
 
@@ -106,7 +100,7 @@ function css(done) {
       suffix: ".min"
     }))
     .pipe(cleanCSS())
-    .pipe(gulp.dest("./www/static/css"))
+    .pipe(gulp.dest("./www/css"))
     .pipe(browsersync.stream());
 
     done();
@@ -127,14 +121,14 @@ function js(done) {
     .pipe(rename({
         suffix: '.min'
     }))
-    .pipe(gulp.dest('./www/static/js'))
+    .pipe(gulp.dest('./www/js'))
     .pipe(browsersync.stream());
 
     //pass-through already minifed js files
     gulp.src([
         './src/js/*.min.js'
     ])
-    .pipe(gulp.dest('./www/static/js'))
+    .pipe(gulp.dest('./www/js'))
     .pipe(browsersync.stream());
 
     done();
