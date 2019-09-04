@@ -145,10 +145,12 @@ function pages(done){
 
     projects = JSON.parse(fs.readFileSync('./src/pages/data/projects.json', 'utf8'));
     timeline = JSON.parse(fs.readFileSync('./src/pages/data/timeline.json', 'utf8'));
+    error_pages = JSON.parse(fs.readFileSync('./src/pages/data/error-pages.json', 'utf8'));
 
     //Cleanup
     del([
-        'www/projects/**/*'
+        'www/projects/**/*',
+        'www/error-pages/**/*'
     ]);
 
     //Homepage
@@ -183,6 +185,19 @@ function pages(done){
         ))
         .pipe(rename(project.id+".html"))
         .pipe(gulp.dest("./www/projects"))
+        .pipe(browsersync.stream());
+    });
+
+    //Error pages
+    error_pages.forEach(function(error_page){
+        gulp.src("./src/pages/error-page.mustache")
+        .pipe(mustache(
+            error_page,
+            {},
+            {}
+        ))
+        .pipe(rename("error-"+error_page.code+".html"))
+        .pipe(gulp.dest("./www/error-pages"))
         .pipe(browsersync.stream());
     });
 

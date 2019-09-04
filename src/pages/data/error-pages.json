@@ -1,0 +1,22 @@
+[
+    {
+        "code": "400",
+        "title": "Bad Request",
+        "body": "Bad Request"
+    },
+    {
+        "code": "403",
+        "title": "Forbidden",
+        "body": "You are not authorized to access this resource"
+    },
+    {
+        "code": "404",
+        "title": "Page not found",
+        "body": "The page can't be found"
+    },
+    {
+        "code": "500",
+        "title": "Internal server error",
+        "body": "It's not you, it's me. I'll fix this issue as soon as possible"
+    }
+]

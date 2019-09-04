@@ -34,7 +34,6 @@ npm run gulp
 At this point, copy the `www` folder to the web server root.
 
 ## TODO
-- Add error pages: /error-pages/404.html
 - Is <article> worth using?
 - Test accessibility
 - Test on iPhone (and friends) notch
