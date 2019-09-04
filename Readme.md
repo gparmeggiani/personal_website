@@ -38,6 +38,7 @@ At this point, copy the `www` folder to the web server root.
 - Fix links issues on mobile
 - Fix portfolio pages layout for mobile
 - Add canonical URL
+- Add error pages: /error-pages/404.html
 - Is <article> worth using?
 - Test accessibility
 - Test on iPhone (and friends) notch
