@@ -2,6 +2,7 @@
 const del = require('del');
 const fs = require('fs');
 const gulp = require("gulp");
+const merge = require('merge-stream');
 const browsersync = require("browser-sync").create();
 const cleanCSS = require("gulp-clean-css");
 const header = require("gulp-header");
@@ -25,70 +26,69 @@ const cstyle_banner = ['/*!\n',
 ].join('');
 
 
-function clean(done) {
-    del([
+function clean() {
+    return del([
         'www/**/*'
     ]);
-
-    done();
 }
 
 // Copy vendor files to the /js and/or /css folders
-function vendor(done) {
+function vendor() {
+
+    stm = merge();
     
     // --------------------------------------------------------------------------------------
     //Third party CSS files
-    gulp.src([
+    stm.add(gulp.src([
         'node_modules/bootstrap/dist/css/bootstrap.min.css',        // Bootstrap
         'node_modules/prismjs/themes/prism.css',                    // Prism.js
         'node_modules/prismjs/themes/prism-okaidia.css'           
     ])
-    .pipe(gulp.dest('www/css'))
+    .pipe(gulp.dest('www/css')));
 
     // Font awesome
-    gulp.src([
+    stm.add(gulp.src([
         'node_modules/@fortawesome/fontawesome-free/css/all.min.css'           
     ])
     .pipe(rename('fontawesome-all.min.css'))
-    .pipe(gulp.dest('www/css'))
+    .pipe(gulp.dest('www/css')));
 
     // --------------------------------------------------------------------------------------
     // Third party JS files
-    gulp.src([
+    stm.add(gulp.src([
         'node_modules/jquery/dist/jquery.min.js',                   // jQuery
         'node_modules/jquery.easing/jquery.easing.min.js',          // jQuery Easing
         'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',   // Bootstrap
         'node_modules/typed.js/lib/typed.min.js',                   // Typed.js
         'node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.min.js'
     ])
-    .pipe(gulp.dest('www/js'))
+    .pipe(gulp.dest('www/js')));
 
     // Prism.js (build custom js file by concatenating the required ones)
-    gulp.src([
+    stm.add(gulp.src([
         'node_modules/prismjs/components/prism-core.min.js',
         'node_modules/prismjs/components/prism-clike.min.js',
         'node_modules/prismjs/components/prism-c.min.js',
         'node_modules/prismjs/components/prism-python.min.js'
     ])
     .pipe(concat('prism.min.js'))
-    .pipe(gulp.dest('www/js'))
+    .pipe(gulp.dest('www/js')));
 
     // --------------------------------------------------------------------------------------
     // Other files
 
     // Font awesome
-    gulp.src([
+    stm.add(gulp.src([
         'node_modules/@fortawesome/fontawesome-free/webfonts/*'           
     ])
-    .pipe(gulp.dest('www/webfonts'))
+    .pipe(gulp.dest('www/webfonts')));
 
-    // --------------------------------------------------------------------------------------
-    done();
+    return stm;
 }
 
 // CSS task
-function css(done) {
-    gulp.src("./src/scss/*.scss")
+function css() {
+    return gulp.src("./src/scss/*.scss")
     .pipe(plumber())
     .pipe(sass({
       outputStyle: "expanded"
@@ -103,15 +103,15 @@ function css(done) {
     .pipe(cleanCSS())
     .pipe(gulp.dest("./www/css"))
     .pipe(browsersync.stream());
-
-    done();
 }
 
 // JS task
-function js(done) {
+function js() {
+
+    stm = merge();
 
     //Minify js files
-    gulp.src([
+    stm.add(gulp.src([
         './src/js/*.js',
         '!./src/js/*.min.js'
     ])
@@ -123,40 +123,36 @@ function js(done) {
         suffix: '.min'
     }))
     .pipe(gulp.dest('./www/js'))
-    .pipe(browsersync.stream());
+    .pipe(browsersync.stream()));
 
     //pass-through already minifed js files
-    gulp.src([
+    stm.add(gulp.src([
         './src/js/*.min.js'
     ])
     .pipe(gulp.dest('./www/js'))
-    .pipe(browsersync.stream());
+    .pipe(browsersync.stream()));
 
-    done();
+    return stm;
 }
 
 // Render the html pages
-function pages(done){
+function pages() {
 
-    projects = JSON.parse(fs.readFileSync('./src/pages/data/projects.json', 'utf8'));
-    timeline = JSON.parse(fs.readFileSync('./src/pages/data/timeline.json', 'utf8'));
-    error_pages = JSON.parse(fs.readFileSync('./src/pages/data/error-pages.json', 'utf8'));
+    var stm = merge();
 
-    append_file_hash = function() {
+    var projects = JSON.parse(fs.readFileSync('./src/pages/data/projects.json', 'utf8'));
+    var timeline = JSON.parse(fs.readFileSync('./src/pages/data/timeline.json', 'utf8'));
+    var error_pages = JSON.parse(fs.readFileSync('./src/pages/data/error-pages.json', 'utf8'));
+
+    var append_file_hash = function() {
         return function(text, render) {
             rendered = render(text)
             return rendered + '?v=' +  md5File.sync('www' + rendered).substring(1, 6);
         }
     }
 
-    //Cleanup
-    del([
-        'www/projects/**/*',
-        'www/error-pages/**/*'
-    ]);
-
     //Homepage
-    gulp.src("./src/pages/home.mustache")
+    stm.add(gulp.src("./src/pages/home.mustache")
     .pipe(mustache({
         "projects": projects,
         "timeline": timeline,
@@ -164,7 +160,7 @@ function pages(done){
     },{},{}))
     .pipe(rename("index.html"))
     .pipe(gulp.dest("./www"))
-    .pipe(browsersync.stream());
+    .pipe(browsersync.stream()));
 
     //Projects pages
     projects.forEach(function(project){
@@ -178,7 +174,7 @@ function pages(done){
             body_partial = fs.readFileSync('./src/pages/'+project.body, 'utf8')
         }
 
-        gulp.src("./src/pages/project.mustache")
+        stm.add(gulp.src("./src/pages/project.mustache")
         .pipe(mustache(
             {
                 "prj": project,
@@ -191,12 +187,12 @@ function pages(done){
         ))
         .pipe(rename(project.id+".html"))
         .pipe(gulp.dest("./www/projects"))
-        .pipe(browsersync.stream());
+        .pipe(browsersync.stream()));
     });
 
     //Error pages
     error_pages.forEach(function(error_page){
-        gulp.src("./src/pages/error-page.mustache")
+        stm.add(gulp.src("./src/pages/error-page.mustache")
         .pipe(mustache(
             {
                 "error": error_page,
@@ -205,16 +201,16 @@ function pages(done){
         ))
         .pipe(rename("error-"+error_page.code+".html"))
         .pipe(gulp.dest("./www/error-pages"))
-        .pipe(browsersync.stream());
+        .pipe(browsersync.stream()));
     });
 
-    done();
+    return stm;
 }
 
 // Copy the src content into the www folder, except for the files that have to be processed
-function copysrc(done){
+function copysrc(){
 
-    gulp.src([
+    return gulp.src([
         "./src/**/*",
         "!./src/js{,/**}*",
         "!./src/scss{,/**}",
@@ -222,28 +218,16 @@ function copysrc(done){
     ])
     .pipe(gulp.dest("./www"))
     .pipe(browsersync.stream());
-
-    done();
 }
 
-// Register tasks
-gulp.task("clean", clean);
-gulp.task("vendor", vendor);
-gulp.task("css", css);
-gulp.task("js", js);
-gulp.task("copysrc", copysrc);
-gulp.task("pages", pages);
-
 // BrowserSync
-function browserSync(done) {
-    browsersync.init({
+function browserSync() {
+    return browsersync.init({
         online: false,
         server: {
             baseDir: "./www"
         }
     });
-
-    done();
 }
 
 // BrowserSync Reload
@@ -266,8 +250,19 @@ function watchFiles() {
     gulp.watch(["./www/**/*"], browserSyncReload);
 }
 
+//build task
+gulp.task("build", gulp.series(gulp.parallel(vendor, copysrc, css, js), pages));
+
 //default task
-gulp.task("default", gulp.parallel(vendor, copysrc, pages, css, js));
+gulp.task("default", gulp.series(clean, "build"));
 
 //dev task
 gulp.task("dev", gulp.series("default", gulp.parallel(watchFiles, browserSync)));
+
+// Register tasks
+gulp.task("clean", clean);
+gulp.task("vendor", vendor);
+gulp.task("css", css);
+gulp.task("js", js);
+gulp.task("copysrc", copysrc);
+gulp.task("pages", pages);
