@@ -9,7 +9,7 @@
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
         <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
 
-        <title>{{code}} - {{title}}</title>
+        <title>{{error.code}} - {{error.title}}</title>
 
         <style type="text/css">
             *{
@@ -54,8 +54,8 @@
     <body>
         <div id="main">
             <div class="fof">
-                <h1>Error {{code}}</h1>
-                <p><b>{{body}}</b></p>
+                <h1>Error {{error.code}}</h1>
+                <p><b>{{error.body}}</b></p>
                 <p>Go back to the <a href="/">homepage</a>.</p>
             </div>
         </div>

@@ -23,7 +23,7 @@
         <!-- Header section -->
         <header class="masthead text-center">
             <div class="container">
-                <img class="myself img-fluid mb-5 d-block mx-auto" src="/img/giacomo.jpg" alt="">
+                <img class="myself img-fluid mb-5 d-block mx-auto" src="{{#afh}}/img/giacomo.jpg{{/afh}}" alt="">
                 <h1 class="text-uppercase mb-0">
                     Hello!<br>
                     <span class="typed"></span>
@@ -91,7 +91,7 @@
                                 </div>
                             </div>
                             {{#image}}
-                            <img class="img-fluid" src="/img/portfolio/{{image}}" alt="">
+                            <img class="img-fluid" src="{{#afh}}/img/portfolio/{{image}}{{/afh}}" alt="">
                             {{/image}}
                         </a>
                         <div class="portfolio-caption">
@@ -138,7 +138,7 @@
                             {{/inverted}}
                                 <div class="timeline-image">
                                     {{#image}}
-                                    <img class="rounded-circle img-fluid" src="/img/timeline/{{image}}" alt="">
+                                    <img class="rounded-circle img-fluid" src="{{#afh}}/img/timeline/{{image}}{{/afh}}" alt="">
                                     {{/image}}
                                 </div>
                                 <div class="timeline-panel">
@@ -180,7 +180,7 @@
         {{> partials/footer }}
 
         {{> partials/common_js }}
-        <script src="/js/typed.min.js"></script>
+        <script src="{{#afh}}/js/typed.min.js{{/afh}}"></script>
         <script>
             //Typed in the header
             new Typed('.typed', {

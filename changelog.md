@@ -2,7 +2,7 @@
 
 # 2.3
 - Files tree structure updated
-- [TODO] Add version query parameter for css, js and image files
+- Add version query parameter for css, js and image files, based on the md5 of the file itself
 - [TODO] Remove 'extra' field in porfolio JSON format
 - [TODO] Smooth scrool in "be part of my story" link
 

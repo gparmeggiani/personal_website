@@ -11,6 +11,7 @@ const sass = require("gulp-sass");
 const uglify = require("gulp-uglify");
 const mustache = require("gulp-mustache");
 var concat = require('gulp-concat');
+const md5File = require('md5-file')
 
 const pkg = require('./package.json');
 
@@ -141,6 +142,13 @@ function pages(done){
     timeline = JSON.parse(fs.readFileSync('./src/pages/data/timeline.json', 'utf8'));
     error_pages = JSON.parse(fs.readFileSync('./src/pages/data/error-pages.json', 'utf8'));
 
+    append_file_hash = function() {
+        return function(text, render) {
+            rendered = render(text)
+            return rendered + '?v=' +  md5File.sync('www' + rendered).substring(1, 6);
+        }
+    }
+
     //Cleanup
     del([
         'www/projects/**/*',
@@ -150,8 +158,9 @@ function pages(done){
     //Homepage
     gulp.src("./src/pages/home.mustache")
     .pipe(mustache({
-        projects: projects,
-        timeline: timeline
+        "projects": projects,
+        "timeline": timeline,
+        "afh": append_file_hash
     },{},{}))
     .pipe(rename("index.html"))
     .pipe(gulp.dest("./www"))
@@ -171,7 +180,10 @@ function pages(done){
 
         gulp.src("./src/pages/project.mustache")
         .pipe(mustache(
-            project,
+            {
+                "prj": project,
+                "afh": append_file_hash
+            },
             {},
             {
                 "extra_partial": extra_partial
@@ -186,9 +198,10 @@ function pages(done){
     error_pages.forEach(function(error_page){
         gulp.src("./src/pages/error-page.mustache")
         .pipe(mustache(
-            error_page,
-            {},
-            {}
+            {
+                "error": error_page,
+                "afh": append_file_hash
+            }
         ))
         .pipe(rename("error-"+error_page.code+".html"))
         .pipe(gulp.dest("./www/error-pages"))
@@ -218,8 +231,8 @@ gulp.task("clean", clean);
 gulp.task("vendor", vendor);
 gulp.task("css", css);
 gulp.task("js", js);
-gulp.task("pages", pages);
 gulp.task("copysrc", copysrc);
+gulp.task("pages", pages);
 
 // BrowserSync
 function browserSync(done) {
