@@ -173,9 +173,9 @@ function pages(done){
             return
         }
 
-        var extra_partial = "n/a"; //Stupid behavior
-        if(project.extra) {
-            extra_partial = fs.readFileSync('./src/pages/'+project.extra, 'utf8')
+        var body_partial = "n/a"; //Stupid behavior
+        if(project.body) {
+            body_partial = fs.readFileSync('./src/pages/'+project.body, 'utf8')
         }
 
         gulp.src("./src/pages/project.mustache")
@@ -186,7 +186,7 @@ function pages(done){
             },
             {},
             {
-                "extra_partial": extra_partial
+                "body_partial": body_partial
             }
         ))
         .pipe(rename(project.id+".html"))

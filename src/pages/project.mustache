@@ -31,20 +31,14 @@
                 {{/prj.subtitle}}
             </div>
         </section>
+        
         {{#prj.body}}
         <section>
             <div class="container project-container">
-                {{{prj.body}}}
+                {{> body_partial }}
             </div>
         </section>
         {{/prj.body}}
-        {{#prj.extra}}
-        <section>
-            <div class="container project-container">
-                {{> extra_partial }}
-            </div>
-        </section>
-        {{/prj.extra}}
 
         {{> partials/footer }}
         {{> partials/common_js }}

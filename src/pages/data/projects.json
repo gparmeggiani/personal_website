@@ -3,8 +3,7 @@
         "id": "x86-application-reverse-engineering-and-patching",
         "title": "x86 application reverse engineering and patching",
         "subtitle": "I dug deeply inside some closed-source binary applications. Here I'd like to collect what I consider worth sharing",
-        "body": null,
-        "extra": "projects/x86_reverse_engineering.mustache",
+        "body": "projects/x86_reverse_engineering.mustache",
         "image": "x86_reverse_engineering.png",
         "draft": false
     },
@@ -12,8 +11,7 @@
         "id": "sensor-fusion-for-gps-location-estimation-with-kalman-filters",
         "title": "Sensor fusion for GPS location estimation with Kalman filters",
         "subtitle": "A sneak peak into how I'm using a Kalman filter to combine the GPS position with the vehicle speed to improve the location estimation accuracy.",
-        "body": null,
-        "extra": "projects/sensor_fusion_with_kalman_filters.mustache",
+        "body": "projects/sensor_fusion_with_kalman_filters.mustache",
         "image": "kalman-car-simulator.png",
         "draft": false
     },
@@ -30,8 +28,7 @@
         "id": "elimina-code-integrato-in-wingesfar",
         "title": "Queue management system",
         "subtitle": "Works with Wingesfar and it is build using microservices architecture: Docker containers and native applications. Communication is based on MQTT",
-        "body": null,
-        "extra": "projects/eliminacode-wingesfar.mustache",
+        "body": "projects/eliminacode-wingesfar.mustache",
         "image": null,
         "draft": true
     },
@@ -39,8 +36,7 @@
         "id": "5g-coral",
         "title": "5G-CORAL",
         "subtitle": "A multi-tier architecture for the Edge and Fog Computing. I designed, developed and showcased the connected cars demo",
-        "body": null,
-        "extra": "projects/5g-coral.mustache",
+        "body": "projects/5g-coral.mustache",
         "image": "5g-coral.png",
         "draft": false
     },
@@ -48,8 +44,7 @@
         "id": "bespecular",
         "title": "BeSpecular",
         "subtitle": "BeSpecular is an app that lets you help blind & deafblind people identify objects or situations.<br>More info at <a href=\"https://www.bespecular.com\">www.bespecular.com</a>",
-        "body": null,
-        "extra": "projects/bespecular.mustache",
+        "body": "projects/bespecular.mustache",
         "image": "bespecular_stanford_team.jpg",
         "draft": false
     },
@@ -57,8 +52,7 @@
         "id": "smart-anchor",
         "title": "Smart Anchor",
         "subtitle": "A device that tells you if a boat anchor is dragging or not by detecting its vibrations",
-        "body": null,
-        "extra": "projects/smartanchor.mustache",
+        "body": "projects/smartanchor.mustache",
         "image": "smart_anchor_transmitter.jpg",
         "draft": false
     },
@@ -66,8 +60,7 @@
         "id": "cross-coupled-oscillator",
         "title": "Cross coupled oscillator",
         "subtitle": "A sinusoidal oscillator I built to better understand the topic when I was studying it at the university",
-        "body": null,
-        "extra": "projects/cross_coupled_oscillator.mustache",
+        "body": "projects/cross_coupled_oscillator.mustache",
         "image": "cross_coupled.jpg",
         "draft": false
     },
@@ -75,8 +68,7 @@
         "id": "expomash-expo-milano-2015",
         "title": "Expomash for EXPO Milano 2015",
         "subtitle": "A website that uses the Elo's Algorithm to rank the pavillions at EXPO Milano 2015",
-        "body": null,
-        "extra": "projects/expomash.mustache",
+        "body": "projects/expomash.mustache",
         "image": "expomash.png",
         "draft": false
     },
@@ -84,8 +76,7 @@
         "id": "msc-thesis",
         "title": "M.Sc. Thesis",
         "subtitle": "",
-        "body": null,
-        "extra": "projects/thesis.mustache",
+        "body": "projects/thesis.mustache",
         "image": "thesis-readout.jpg",
         "draft": true
     },
@@ -93,8 +84,7 @@
         "id": "joule-thief",
         "title": "Joule Thief",
         "subtitle": "",
-        "body": "A Joule Thief is a circuit used to elevate a small DC voltage to a much higher AC voltage. Compared to the classic circuit, the one I built has been modified in order to power a small neon lamp instead of a LED. The neon lamp requires about 160V to ionize the gas it contains and therefore to produce light. Since this voltage cannot be present across the Collector and the Emitter pins of the BJT without burning it, I had to make a little modification to the transformer, adding to it an additional winding connected directly to the neon lamp. This way the voltage will rise both across the neon lamp and the C and E of the transistor, but at two different rates, according to the respective number of loops of the two windings. The voltage across the neon lamp will reach the required 160V before the VCE reaches the breakdown voltage. This circuit fascinates me because it is a boost DC DC converter that also oscillates by itself, exploiting the nonlinearity of the magnetic core",
-        "extra": null,
+        "body": "projects/joule-thief.mustache",
         "image": "joule_thief.jpg",
         "draft": true
     },
@@ -102,17 +92,23 @@
         "id": "class-a-amplifier",
         "title": "Class A amplifier",
         "subtitle": "",
-        "body": "During my Bachelor's degree my friend Giacomo Petracca and I decided to build some of the circuits we studied in class. The first one we build was a (bulky) class A amplifier, and it has been the first non trivial circuit I have ever designed and not just built or modified. Hearing the music coming out of the loudspeaker connected to it was a big satisfaction!",
-        "extra": null,
+        "body": "projects/class-a-amplifier.mustache",
         "image": "classA-amplifier.jpg",
+        "draft": true
+    },
+    {
+        "id": "psp-development-and-reverse-engineering",
+        "title": "PSP development and reverse engineering",
+        "subtitle": "As a teenager I started developing homebrew software for the PlayStationPortable",
+        "body": "projects/psp.mustache",
+        "image": null,
         "draft": true
     },
     {
         "id": "one-of-my-first-circuits",
         "title": "One of my first circuits",
         "subtitle": "This is one of my favorite pictures of when I was a kid. Here I'm demonstrating series vs parallel connections.",
-        "body": "This is one of my favorite pictures of when I was a kid. That is me showing my mother a simple circuit I built. I guess that was to show the difference between two lamps connected in series or parallel. In fact, the two at the back of the picture are connected in series and are less bright than the closest one, which is connected in parallel to the other two. <div class=\"text-center\"><figure class=\"figure\"><img src=\"/img/portfolio/me-4-years-old.jpg\"class=\"figure-img img-fluid rounded\" alt=\"Myself as a kid showing a circuit I built\"><figcaption class=\"figure-caption\">Myself as a kid showing a circuit I built</figcaption></figure></div>",
-        "extra": null,
+        "body": "projects/one-of-my-first-circuits.mustache",
         "image": "me-4-years-old-thumb.jpg",
         "draft": false
     }
