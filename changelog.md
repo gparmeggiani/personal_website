@@ -4,7 +4,7 @@
 - Files tree structure updated
 - Add version query parameter for css, js and image files, based on the md5 of the file itself
 - Removed 'extra' field in porfolio JSON format
-- [TODO] Smooth scrool in "be part of my story" link
+- Smooth scrool in "be part of my story" link
 
 ## 2.2
 - Fix typos, minor visual refactoring
