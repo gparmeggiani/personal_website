@@ -1,6 +1,11 @@
 # Changelog
 
-# 2.3
+## 2.4
+- [TODO] Add Google Analytics
+- [TODO] Add cookie policy, if needed
+- [TODO] Add trackers for clicks on relevant internal links
+
+## 2.3
 - Files tree structure updated
 - Add version query parameter for css, js and image files, based on the md5 of the file itself
 - Removed 'extra' field in porfolio JSON format
@@ -15,6 +20,4 @@
 - Add error pages
 
 ## 2.0
-- 2019 version of the website
-- Full redesign
-- Portfolio
+- 2019 version of the website.
