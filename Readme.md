@@ -32,8 +32,3 @@ npm run gulp
 ```
 
 At this point, copy the `www` folder to the web server root.
-
-## TODO
-- Is <article> worth using?
-- Test accessibility
-- Test on iPhone (and friends) notch
