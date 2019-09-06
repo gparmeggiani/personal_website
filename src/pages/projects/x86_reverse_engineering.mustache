@@ -145,7 +145,7 @@ def decrypt_ascii(in_data, seed):
 
 	for i, d in enumerate(in_data):
 		d -= seed
-		if d < 32 or d > 127:
+		if d &lt; 32 or d &gt; 127:
 			return None
 
 		ret[i] = d

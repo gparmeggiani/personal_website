@@ -18,6 +18,7 @@ const rename = require("gulp-rename");
 const sass = require("gulp-sass");
 const uglify = require("gulp-uglify");
 const mustache = require("gulp-mustache");
+const htmlmin = require('gulp-htmlmin');
 const concat = require('gulp-concat');
 const md5File = require('md5-file')
 
@@ -180,6 +181,7 @@ function pages() {
         "afh": append_file_hash
     },{},{}))
     .pipe(rename("index.html"))
+    .pipe(htmlmin({ collapseWhitespace: true, removeComments:true, minifyJS: true, minifyCSS: true }))
     .pipe(gulp.dest("./www"))
     .pipe(browsersync.stream()));
 
@@ -207,6 +209,7 @@ function pages() {
             }
         ))
         .pipe(rename(project.id+".html"))
+        .pipe(htmlmin({ collapseWhitespace: true, removeComments:true, minifyJS: true, minifyCSS: true }))
         .pipe(gulp.dest("./www/projects"))
         .pipe(browsersync.stream()));
     });
@@ -221,6 +224,7 @@ function pages() {
             }
         ))
         .pipe(rename("error-"+error_page.code+".html"))
+        .pipe(htmlmin({ collapseWhitespace: true, removeComments:true, minifyJS: true, minifyCSS: true }))
         .pipe(gulp.dest("./www/error-pages"))
         .pipe(browsersync.stream()));
     });

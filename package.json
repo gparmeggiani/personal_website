@@ -33,6 +33,7 @@
         "gulp-concat": "^2.6.1",
         "gulp-filter": "^5.1.0",
         "gulp-header": "^2.0.9",
+        "gulp-htmlmin": "^5.0.1",
         "gulp-mustache": "^4.1.2",
         "gulp-plumber": "^1.2.1",
         "gulp-rename": "1.4.0",
