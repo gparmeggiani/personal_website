@@ -37,10 +37,10 @@ const cstyle_banner = ['/*!\n',
 /**
  * Delete the contents of the www (output) directory
  */
-function clean() {
-    return del([
+function clean(cb) {
+    del([
         'www/**/*'
-    ]);
+    ], cb);
 }
 
 /**
