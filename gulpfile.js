@@ -1,4 +1,11 @@
-// Load plugins
+/**
+ * Build script for my personal website
+ * 
+ * Usage:
+ * npm run gulp
+ * npm run gulp dev
+ */
+
 const del = require('del');
 const fs = require('fs');
 const gulp = require("gulp");
@@ -11,12 +18,12 @@ const rename = require("gulp-rename");
 const sass = require("gulp-sass");
 const uglify = require("gulp-uglify");
 const mustache = require("gulp-mustache");
-var concat = require('gulp-concat');
+const concat = require('gulp-concat');
 const md5File = require('md5-file')
 
 const pkg = require('./package.json');
 
-// C-Style banner for css and js files
+// Build a C-Style banner to be included in the CSS and JS files
 const cstyle_banner = ['/*!\n',
   ' * <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
   ' * Copyright (c) 2014 - ' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
@@ -26,13 +33,18 @@ const cstyle_banner = ['/*!\n',
 ].join('');
 
 
+/**
+ * Delete the contents of the www (output) directory
+ */
 function clean() {
     return del([
         'www/**/*'
     ]);
 }
 
-// Copy vendor files to the /js and/or /css folders
+/**
+ * Copy vendor files to the /js and/or /css folders
+ */
 function vendor() {
 
     stm = merge();
@@ -86,7 +98,9 @@ function vendor() {
     return stm;
 }
 
-// CSS task
+/**
+ * Build SCSS files into a minified CSS
+ */
 function css() {
     return gulp.src("./src/scss/*.scss")
     .pipe(plumber())
@@ -105,12 +119,14 @@ function css() {
     .pipe(browsersync.stream());
 }
 
-// JS task
+/**
+ * Minify (or copy) JS files
+ */
 function js() {
 
     stm = merge();
 
-    //Minify js files
+    //Minify non minified js files
     stm.add(gulp.src([
         './src/js/*.js',
         '!./src/js/*.min.js'
@@ -135,7 +151,12 @@ function js() {
     return stm;
 }
 
-// Render the html pages
+/**
+ * Build the HTML pages
+ * - home page
+ * - projects page
+ * - error pages
+ */
 function pages() {
 
     var stm = merge();
@@ -207,7 +228,9 @@ function pages() {
     return stm;
 }
 
-// Copy the src content into the www folder, except for the files that have to be processed
+/**
+ * Copy the src content into the www folder, except for the files that have to be processed
+ */
 function copysrc(){
 
     return gulp.src([
@@ -220,7 +243,9 @@ function copysrc(){
     .pipe(browsersync.stream());
 }
 
-// BrowserSync
+/**
+ * initialize BrowserSync
+ */
 function browserSync() {
     return browsersync.init({
         online: false,
@@ -230,13 +255,17 @@ function browserSync() {
     });
 }
 
-// BrowserSync Reload
+/**
+ * reload BrowserSync
+ */
 function browserSyncReload(done) {
     browsersync.reload();
     done();
 }
 
-// Watch files
+/**
+ * Watch Files
+ */
 function watchFiles() {
     gulp.watch("./src/scss/**/*", css);
     gulp.watch(["./src/js/**/*.js"], js);
@@ -250,19 +279,8 @@ function watchFiles() {
     gulp.watch(["./www/**/*"], browserSyncReload);
 }
 
-//build task
-gulp.task("build", gulp.series(gulp.parallel(vendor, copysrc, css, js), pages));
-
-//default task
-gulp.task("default", gulp.series(clean, "build"));
-
-//dev task
-gulp.task("dev", gulp.series("default", gulp.parallel(watchFiles, browserSync)));
-
-// Register tasks
+//Register tasks
 gulp.task("clean", clean);
-gulp.task("vendor", vendor);
-gulp.task("css", css);
-gulp.task("js", js);
-gulp.task("copysrc", copysrc);
-gulp.task("pages", pages);
+gulp.task("build", gulp.series(gulp.parallel(vendor, copysrc, css, js), pages));
+gulp.task("default", gulp.series(clean, "build"));
+gulp.task("dev", gulp.series("default", gulp.parallel(watchFiles, browserSync)));
