@@ -7,7 +7,7 @@
     measurement.
 </p>
 <p>
-    First, I devised a system that processes the raw acceleration data and triggers an alarm in case of strongh enough vibrations.<br>
+    First, I devised a system that processes the raw acceleration data and triggers an alarm in case of strong enough vibrations.<br>
     The signal processing is pretty simple: The RMS value of the acceleration over the three axes is fed through a differentiator in order to detect sudden changes. A low pass filter is also added to reduce the gain at high frequencies.<br>
     The resulting signal is then sent to a Schmitt trigger which compares it with a threshold that has been determined experimentally.
 </p>

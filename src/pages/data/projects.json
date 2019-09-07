@@ -67,7 +67,7 @@
     {
         "id": "expomash-expo-milano-2015",
         "title": "Expomash for EXPO Milano 2015",
-        "subtitle": "A website that uses the Elo's Algorithm to rank the pavillions at EXPO Milano 2015",
+        "subtitle": "A website that uses the Elo's Algorithm to rank the pavilions at EXPO Milano 2015",
         "body": "projects/expomash.mustache",
         "image": "expomash.png",
         "draft": false

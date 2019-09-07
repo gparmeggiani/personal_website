@@ -1,7 +1,7 @@
 <link href="{{#afh}}/css/prism-okaidia.css{{/afh}}" rel="stylesheet" />
 
 <p>
-    Sometimes I like to dig deeply into some x86 Windows executables files so that I can better understand how certain piecies of software work.
+    Sometimes I like to dig deeply into some x86 Windows executables files so that I can better understand how certain pieces of software work.
     I decided to collect here some of the things I learned and what I think is worth noting.<br>
     Here's what I'll be talking about:
 </p>
@@ -89,7 +89,7 @@ void encrypt(char *buf, size_t size, int seed)
     adding the state, it is removed from each data byte.
 </p>
 <p>
-    Clearly, this is a ridiculously weak way of protecting data. Knowing the initial 8-bit seed is enough to dechiper all the data.
+    Clearly, this is a ridiculously weak way of protecting data. Knowing the initial 8-bit seed is enough to decipher all the data.
     However this is not even necessary, since a bruteforce attack is very feasible! Let me explain.<br>
     Let's imagine that the original data is the string "Helloworld." which in would correspond to the following hex string
 </p>
@@ -114,7 +114,7 @@ void encrypt(char *buf, size_t size, int seed)
 0x2E + 0x8F = 0xBD
 </code></pre>
 <p>
-    As you can see, this chiper converts two equal characters into different bytes, due to the internal state being updated at every step. This reminded me a little bit of
+    As you can see, this cipher converts two equal characters into different bytes, due to the internal state being updated at every step. This reminded me a little bit of
     the inner workings of the WW-II Enigma Machine. Also, it is interesting to note that two different characters can translate to the same byte, as it happened in this example.
 </p>
 <p>
@@ -346,7 +346,7 @@ mov     dword_600c4844, eax
 <p>
     I'm sure that there are a lot of other ways to patch this binary in order to bypass the check, and this highlights my goal which is to show how easy it is to change the behaviour of a piece of software.
     The licensing system can be extremely complex, but most of the times (I would guess) it comes down to changing the few instructions that process the output of the license check, which is just a boolean value.<br>
-    The only way to prevent binary patching is to <i>require</i> the execution of signed code, which is what's been done with smarphone apps. However computers where born a long time ago, when this kind of software security
+    The only way to prevent binary patching is to <i>require</i> the execution of signed code, which is what's been done with smartphone apps. However computers where born a long time ago, when this kind of software security
     wasn't the priority. For backward compatibility, execution of unsigned code is still possible to this day on many platforms.
 </p>
 
@@ -374,7 +374,7 @@ inc     eax             | 40
 </pre>
 
 <p>
-    The compiler does this instead of a <code>mov</code> instruction beacuse the opcodes are shorter, as can be seen here:
+    The compiler does this instead of a <code>mov</code> instruction because the opcodes are shorter, as can be seen here:
 </p>
 <pre>
 <code class="language-c">
