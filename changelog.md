@@ -1,12 +1,14 @@
 # Changelog
 
+## 2.5
+- [TODO] Add Google Analytics
+- [TODO] Add cookie policy, if needed
+- [TODO] Add trackers for clicks on relevant internal links
+
 ## 2.4
 - Minify HTML pages
 - Fix wrong color in collapsed navbar menu
 - Fix several typos
-- [TODO] Add Google Analytics
-- [TODO] Add cookie policy, if needed
-- [TODO] Add trackers for clicks on relevant internal links
 
 ## 2.3
 - Files tree structure updated
