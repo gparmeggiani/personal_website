@@ -10,7 +10,7 @@
     {
         "id": "sensor-fusion-for-gps-location-estimation-with-kalman-filters",
         "title": "Sensor fusion for GPS location estimation with Kalman filters",
-        "subtitle": "A sneak peak into how I'm using a Kalman filter to combine the GPS position with the vehicle speed to improve the location estimation accuracy.",
+        "subtitle": "A sneak peek into how I'm using a Kalman filter to combine the GPS position with the vehicle speed to improve the location estimation accuracy.",
         "body": "projects/sensor_fusion_with_kalman_filters.mustache",
         "image": "kalman-car-simulator.png",
         "draft": false
