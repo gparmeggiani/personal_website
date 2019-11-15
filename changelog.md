@@ -1,10 +1,13 @@
 # Changelog
 
-## 2.5
+## 2.6
 - [TODO] Add quick contact links under the name at the top section
 - [TODO] Add Google Analytics
 - [TODO] Add cookie policy, if needed
 - [TODO] Add trackers for clicks on relevant internal links
+
+## 2.5
+- Fix typos
 
 ## 2.4
 - Minify HTML pages
